@@ -12,7 +12,38 @@
         <module>core</module>
         <module>item-service</module>
         <module>bid-service</module>
-        <module>item-service</module>
     </modules>
+
+    <properties>
+        <eventuateClientVersion>0.16.0.RELEASE</eventuateClientVersion>
+        <eventuateLocalVersion>0.11.0.RELEASE</eventuateLocalVersion>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.eventuate.client.java</groupId>
+            <artifactId>eventuate-client-java-spring</artifactId>
+            <version>${eventuateClientVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.eventuate.local.java</groupId>
+            <artifactId>eventuate-local-java-jdbc</artifactId>
+            <version>${eventuateLocalVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.eventuate.local.java</groupId>
+            <artifactId>eventuate-local-java-embedded-cdc-autoconfigure</artifactId>
+            <version>${eventuateLocalVersion}</version>
+        </dependency>
+
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+
 
 </project>

@@ -1,3 +1,4 @@
+/*
 package com.so.model;
 
 import java.util.ArrayList;
@@ -37,4 +38,4 @@ public final class Auction {
 	public void addItems(List<Item> items) {
 		this.items = items;
 	}
-}
+}*/

@@ -11,5 +11,18 @@
 
     <artifactId>bid-service-command-web</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.so</groupId>
+            <artifactId>bid-service-command</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.3.8.RELEASE</version>
+        </dependency>
+    </dependencies>
+
 
 </project>
