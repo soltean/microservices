@@ -12,6 +12,8 @@
         <module>core</module>
         <module>item-service</module>
         <module>bid-service</module>
+        <module>bid-view</module>
+        <module>item-view</module>
     </modules>
 
     <properties>
@@ -35,8 +37,20 @@
             <artifactId>eventuate-local-java-embedded-cdc-autoconfigure</artifactId>
             <version>${eventuateLocalVersion}</version>
         </dependency>
-
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <repositories>
         <repository>

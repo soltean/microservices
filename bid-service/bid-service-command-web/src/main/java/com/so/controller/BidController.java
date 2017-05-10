@@ -21,7 +21,7 @@ public class BidController {
 	private BidService bidService;
 
 	@RequestMapping(value = "/bids", method = RequestMethod.POST)
-	public CompletableFuture<ResponseEntity> createOrder(@RequestBody BidDto bid) {
+	public CompletableFuture<ResponseEntity> createBid(@RequestBody BidDto bid) {
 		return bidService.createBid(bid.getItemCode(), bid.getAmount()).thenApply(b -> new ResponseEntity(b.getEntityId(), HttpStatus.OK));
 	}
 }
