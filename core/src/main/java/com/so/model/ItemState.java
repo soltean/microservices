@@ -1,4 +1,4 @@
-package com.so.aggregate;
+package com.so.model;
 
 /**
  * Created by sergiu.oltean on 5/9/2017.

@@ -1,7 +1,7 @@
 package com.so.commands;
 
 import io.eventuate.Command;
-import com.so.aggregate.ItemState;
+import com.so.model.ItemState;
 
 /**
  * Created by sergiu.oltean on 5/5/2017.

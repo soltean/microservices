@@ -7,6 +7,7 @@ import java.util.List;
 import com.so.commands.CreateItemCommand;
 import com.so.commands.ItemCommand;
 import com.so.events.item.CreateItemEvent;
+import com.so.model.ItemState;
 
 /**
  * Created by sergiu.oltean on 5/9/2017.
