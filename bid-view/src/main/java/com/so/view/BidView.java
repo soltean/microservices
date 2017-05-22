@@ -2,12 +2,16 @@ package com.so.view;
 
 import java.util.UUID;
 import com.so.model.BidState;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Created by sergiu.oltean on 5/12/2017.
  */
+@Document
 public class BidView {
 
+	@Id
 	private String bidCode;
 	private String itemCode;
 	private int amount;
@@ -32,4 +36,19 @@ public class BidView {
 		return state;
 	}
 
+	public void setBidCode(String bidCode) {
+		this.bidCode = bidCode;
+	}
+
+	public void setItemCode(String itemCode) {
+		this.itemCode = itemCode;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public void setState(BidState state) {
+		this.state = state;
+	}
 }
