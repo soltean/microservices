@@ -23,14 +23,34 @@ public class BidViewService {
 		bidViewRepository.save(bid);
 	}
 
+	public List<BidView> getBidsForItem(String itemCode) {
+		Example<BidView> itemCodeBidsExample = getBidViewByItemCodeExample(itemCode);
+		return bidViewRepository.findAll(itemCodeBidsExample);
+	}
+
 	public void evaluateBids(String itemCode) {
-		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("itemCode", exact());
-		Example<BidView> itemCodeBidsExample = Example.of(new BidView(itemCode), matcher);
+		Example<BidView> itemCodeBidsExample = getBidViewByItemCodeExample(itemCode);
 		List<BidView> bids = bidViewRepository.findAll(itemCodeBidsExample);
 		bids.forEach(bidView -> bidView.setState(BidState.REJECT));
 		BidView winningBid = bids.stream().max((o1, o2) -> o1.getAmount() - o2.getAmount()).get();
 		winningBid.setState(BidState.WON);
 		bidViewRepository.save(bids);
+	}
+
+	public BidView findWinningBid(String itemCode) {
+		evaluateBids(itemCode);
+		Example<BidView> winningBidExample = getWinningBidExample(itemCode);
+		return bidViewRepository.findOne(winningBidExample);
+	}
+
+	private Example<BidView> getBidViewByItemCodeExample(String itemCode) {
+		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("itemCode", exact());
+		return Example.of(new BidView(itemCode), matcher);
+	}
+
+	private Example<BidView> getWinningBidExample(String itemCode) {
+		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("itemCode", exact()).withMatcher("bidState", exact());
+		return Example.of(new BidView(itemCode, BidState.WON), matcher);
 	}
 
 }

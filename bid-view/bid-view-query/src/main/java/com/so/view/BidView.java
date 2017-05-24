@@ -28,6 +28,11 @@ public class BidView {
 		this.itemCode = itemCode;
 	}
 
+	public BidView(String itemCode, BidState bidState) {
+		this.itemCode = itemCode;
+		this.state = bidState;
+	}
+
 	public String getItemCode() {
 		return itemCode;
 	}
