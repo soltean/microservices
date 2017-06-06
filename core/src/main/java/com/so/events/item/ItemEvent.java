@@ -7,19 +7,5 @@ import io.eventuate.Event;
  */
 public class ItemEvent implements Event {
 
-	private final String itemCode;
-	private final int reservePrice;
 
-	public ItemEvent(String itemCode, int reservePrice) {
-		this.itemCode = itemCode;
-		this.reservePrice = reservePrice;
-	}
-
-	public String getItemCode() {
-		return itemCode;
-	}
-
-	public int getReservePrice() {
-		return reservePrice;
-	}
 }

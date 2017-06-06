@@ -1,5 +1,6 @@
 package com.so.service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.so.model.ItemState;
@@ -12,16 +13,24 @@ import com.so.view.ItemView;
 @Service
 public class ItemViewService {
 
-    @Autowired
-    private ItemViewRepository itemViewRepository;
+	private ItemViewRepository itemViewRepository;
 
-    public void createItem(ItemView itemView) {
-        itemViewRepository.save(itemView);
-    }
+	@Autowired
+	public ItemViewService(ItemViewRepository itemViewRepository) {
+		this.itemViewRepository = itemViewRepository;
+	}
 
-    public void updateItemState(String itemCode, ItemState itemState) {
-        ItemView item = itemViewRepository.findOne(itemCode);
-        item.setItemState(itemState);
-    }
+	public void createItem(ItemView itemView) {
+		itemViewRepository.save(itemView);
+	}
+
+	public void updateItemState(String itemCode, ItemState itemState) {
+		ItemView item = itemViewRepository.findOne(itemCode);
+		item.setItemState(itemState);
+	}
+
+	public List<ItemView> findAllItems() {
+		return itemViewRepository.findAll();
+	}
 
 }

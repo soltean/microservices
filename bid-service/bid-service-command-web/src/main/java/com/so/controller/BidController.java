@@ -17,8 +17,12 @@ import com.so.service.BidService;
 @RestController
 public class BidController {
 
-	@Autowired
 	private BidService bidService;
+
+	@Autowired
+	public BidController(BidService bidService) {
+		this.bidService = bidService;
+	}
 
 	@RequestMapping(value = "/bids", method = RequestMethod.POST)
 	public CompletableFuture<ResponseEntity> createBid(@RequestBody BidDto bid) {

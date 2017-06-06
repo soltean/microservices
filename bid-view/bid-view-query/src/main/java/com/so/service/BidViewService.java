@@ -28,7 +28,9 @@ public class BidViewService {
 		return bidViewRepository.findAll(itemCodeBidsExample);
 	}
 
-	public void evaluateBids(String itemCode) {
+	//TODO:events?? win/reject
+
+	private void evaluateBids(String itemCode) {
 		Example<BidView> itemCodeBidsExample = getBidViewByItemCodeExample(itemCode);
 		List<BidView> bids = bidViewRepository.findAll(itemCodeBidsExample);
 		bids.forEach(bidView -> bidView.setState(BidState.REJECT));
