@@ -15,10 +15,14 @@ import com.so.command.CreateBidCommand;
 @Service
 public class BidService {
 
-	@Autowired
 	private AggregateRepository<BidAggregate, BidCommand> bidRepository;
 
-	public CompletableFuture<EntityWithIdAndVersion<BidAggregate>> createBid(String itemCode, int amount) {
+	@Autowired
+	public BidService(AggregateRepository<BidAggregate, BidCommand> bidRepository) {
+		this.bidRepository = bidRepository;
+	}
+
+	public CompletableFuture<EntityWithIdAndVersion<BidAggregate>> addBid(String itemCode, int amount) {
 		return bidRepository.save(new CreateBidCommand(itemCode, amount));
 	}
 }

@@ -23,7 +23,7 @@ public class ItemViewQueryController {
 		this.itemViewService = itemViewService;
 	}
 
-	@RequestMapping(value = "/items/", method = RequestMethod.POST)
+	@RequestMapping(value = "/items", method = RequestMethod.GET)
 	public ResponseEntity<List<ItemView>> findAllItems() {
 		return new ResponseEntity<>(itemViewService.findAllItems(), HttpStatus.OK);
 	}
