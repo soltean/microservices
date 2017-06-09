@@ -5,7 +5,14 @@ package com.so.commands;
  */
 public class CreateItemCommand extends ItemCommand {
 
+	private int reservePrice;
+
 	public CreateItemCommand(String itemCode, int reservePrice) {
-		super(itemCode, reservePrice);
+		super(itemCode);
+		this.reservePrice = reservePrice;
+	}
+
+	public int getReservePrice() {
+		return reservePrice;
 	}
 }

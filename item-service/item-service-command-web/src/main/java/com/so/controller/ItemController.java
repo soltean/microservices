@@ -1,6 +1,5 @@
 package com.so.controller;
 
-import so.dto.ItemDto;
 import java.util.concurrent.CompletableFuture;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,8 +17,12 @@ import com.so.service.ItemService;
 @RestController
 public class ItemController {
 
-	@Autowired
 	private ItemService itemService;
+
+	@Autowired
+	private ItemController(ItemService itemService) {
+		this.itemService = itemService;
+	}
 
 	@RequestMapping(value = "/items", method = RequestMethod.POST)
 	public CompletableFuture<ResponseEntity> createItem(@RequestBody ItemDto item) {

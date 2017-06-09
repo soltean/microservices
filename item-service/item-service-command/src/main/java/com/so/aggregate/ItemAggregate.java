@@ -6,6 +6,7 @@ import io.eventuate.ReflectiveMutableCommandProcessingAggregate;
 import java.util.List;
 import com.so.commands.CreateItemCommand;
 import com.so.commands.ItemCommand;
+import com.so.commands.UpdateItemCommand;
 import com.so.events.item.CreateItemEvent;
 import com.so.events.item.UpdateItemEvent;
 import com.so.model.ItemState;
@@ -21,6 +22,10 @@ public class ItemAggregate extends ReflectiveMutableCommandProcessingAggregate<I
 
 	public List<Event> createItem(CreateItemCommand createItemCommand) {
 		return EventUtil.events(new CreateItemEvent(createItemCommand.getItemCode(), createItemCommand.getReservePrice()));
+	}
+
+	public List<Event> updateItem(UpdateItemCommand updateItemCommand) {
+		return EventUtil.events(new UpdateItemEvent(updateItemCommand.getItemCode(), updateItemCommand.getItemState()));
 	}
 
 	public void apply(CreateItemEvent createItemEvent) {
