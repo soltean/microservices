@@ -5,4 +5,20 @@ package com.so.command;
  */
 public class EvaluateBidCommand implements BidCommand {
 
+	private final String itemCode;
+
+	private final int highestAmount;
+
+	public EvaluateBidCommand(String itemCode, int highestAmount) {
+		this.itemCode = itemCode;
+		this.highestAmount = highestAmount;
+	}
+
+	public String getItemCode() {
+		return itemCode;
+	}
+
+	public int getHighestAmount() {
+		return highestAmount;
+	}
 }
