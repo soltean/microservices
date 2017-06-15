@@ -7,14 +7,14 @@ import com.so.model.ItemState;
  */
 public class UpdateItemCommand extends ItemCommand {
 
-	private ItemState itemState;
+    private ItemState itemState;
 
-	public UpdateItemCommand(String itemCode, ItemState itemState) {
-		super(itemCode);
-		this.itemState = itemState;
-	}
+    public UpdateItemCommand(String itemCode, ItemState itemState) {
+        super(itemCode);
+        this.itemState = itemState;
+    }
 
-	public ItemState getItemState() {
-		return itemState;
-	}
+    public ItemState getItemState() {
+        return itemState;
+    }
 }

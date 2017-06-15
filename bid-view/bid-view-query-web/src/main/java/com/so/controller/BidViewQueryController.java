@@ -20,13 +20,13 @@ public class BidViewQueryController {
 	@Autowired
 	private BidViewService bidViewService;
 
-	@RequestMapping(value = "/customers/{customerId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/bids/{itemCode}", method = RequestMethod.GET)
 	public ResponseEntity<List<BidView>> getBidsForItem(@PathVariable String itemCode) {
 		List<BidView> bids = bidViewService.getBidsForItem(itemCode);
 		return new ResponseEntity<>(bids, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/customers/{customerId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/bids/{itemCode}", method = RequestMethod.GET)
 	public ResponseEntity<BidView> getWinningBid(@PathVariable String itemCode) {
 		BidView bid = bidViewService.findWinningBid(itemCode);
 		return new ResponseEntity<>(bid, HttpStatus.OK);

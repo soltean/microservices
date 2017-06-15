@@ -1,5 +1,6 @@
 package so.app;
 
+import org.springframework.boot.SpringApplication;
 import so.config.ItemViewWebConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -14,5 +15,9 @@ import org.springframework.context.annotation.Import;
 @EnableEurekaClient
 @FeignClient("http://item-service-query")
 public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
 }
