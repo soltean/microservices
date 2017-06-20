@@ -1,0 +1,36 @@
+bidcommandside:
+  extends:
+    file: docker-compose-common.yml
+    service: customercommandside
+  volumes:
+    - ./bid-command-side-web/build/libs:/app
+
+bidqueryside:
+  extends:
+    file: docker-compose-common.yml
+    service: bidqueryside
+  volumes:
+    - ./bid-view-query-web/build/libs:/app
+  links:
+    - mongodb
+
+itemcommandside:
+  extends:
+    file: docker-compose-common.yml
+    service: itemcommandside
+  volumes:
+    - ./item-command-side/build/libs:/app
+
+itemqueryside:
+  extends:
+    file: docker-compose-common.yml
+    service: itemqueryside
+  volumes:
+    - ./item-view-query-web/build/libs:/app
+  links:
+    - mongodb
+
+mongodb:
+  extends:
+    file: docker-compose-common.yml
+    service: mongodb

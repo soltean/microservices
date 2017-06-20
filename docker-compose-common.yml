@@ -1,0 +1,30 @@
+bidcommandside:
+  build: ./bid-service-command-web/
+  ports:
+    - "8081:8080"
+
+bidqueryside:
+  build: ./bid-view-query-web/
+  ports:
+    - "8082:8080"
+  environment:
+    SPRING_DATA_MONGODB_URI: mongodb://mongodb/bids
+
+itemcommandside:
+  build: ./item-service-command-web/
+  ports:
+    - "8083:8080"
+
+itemqueryside:
+  build: ./item-view-query-web/
+  ports:
+    - "8084:8080"
+  environment:
+    SPRING_DATA_MONGODB_URI: mongodb://mongodb/items
+
+mongodb:
+  image: mongo:3.0.4
+  hostname: mongodb
+  command: mongod --smallfiles
+  ports:
+    - "27017:27017"

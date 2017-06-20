@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8761}
+  port: 8999
 
 #standalone
 eureka:
@@ -9,6 +9,6 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://localhost:8999/eureka/
     server:
       waitTimeInMsWhenSyncEmpty: 0
