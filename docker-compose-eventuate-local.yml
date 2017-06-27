@@ -55,7 +55,7 @@ bidcommandside:
     file: docker-compose-common.yml
     service: bidcommandside
   volumes:
-    - ./bid-command-side-web/build/libs:/app
+    - ./bid-service/bid-command-side-web/target:/app
   links:
     - mysql
     - kafka
@@ -75,7 +75,7 @@ bidqueryside:
     file: docker-compose-common.yml
     service: bidqueryside
   volumes:
-    - ./bid-view-query-web/build/libs:/app
+    - ./bid-view/bid-view-query-web/target:/app
   links:
     - mongodb
     - mysql
@@ -97,7 +97,7 @@ itemcommandside:
     file: docker-compose-common.yml
     service: itemcommandside
   volumes:
-    - ./item-command-side-web/build/libs:/app
+    - ./item-service/item-command-side-web/target:/app
   links:
     - mysql
     - kafka
@@ -117,7 +117,7 @@ itemqueryside:
     file: docker-compose-common.yml
     service: itemqueryside
   volumes:
-    - ./item-view-query-web/build/libs:/app
+    - ./item-view/item-view-query-web/target:/app
   links:
     - mongodb
     - mysql

@@ -3,14 +3,14 @@ bidcommandside:
     file: docker-compose-common.yml
     service: customercommandside
   volumes:
-    - ./bid-command-side-web/build/libs:/app
+    - ./bid-service/bid-command-side-web/target:/app
 
 bidqueryside:
   extends:
     file: docker-compose-common.yml
     service: bidqueryside
   volumes:
-    - ./bid-view-query-web/build/libs:/app
+    - ./bid-view/bid-view-query-web/target:/app
   links:
     - mongodb
 
@@ -19,14 +19,14 @@ itemcommandside:
     file: docker-compose-common.yml
     service: itemcommandside
   volumes:
-    - ./item-command-side/build/libs:/app
+    - ./item-service/item-command-side/target:/app
 
 itemqueryside:
   extends:
     file: docker-compose-common.yml
     service: itemqueryside
   volumes:
-    - ./item-view-query-web/build/libs:/app
+    - ./item-view/item-view-query-web/target:/app
   links:
     - mongodb
 

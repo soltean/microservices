@@ -14,11 +14,11 @@ if [ -z "$DOCKER_HOST_IP" ] ; then
 fi
 
 if [ -z "$SPRING_DATA_MONGODB_URI" ] ; then
-  export SPRING_DATA_MONGODB_URI=mongodb://${DOCKER_HOST_IP?}/customers_orders
+  export SPRING_DATA_MONGODB_URI=mongodb://${DOCKER_HOST_IP?}/bids
   echo Set SPRING_DATA_MONGODB_URI $SPRING_DATA_MONGODB_URI
 fi
 
-DOCKER_COMPOSE="docker-compose -p java-customers-and-orders"
+DOCKER_COMPOSE="docker-compose -p items_and_bids"
 
 while [ "$1" = "-f" ] ; do
   shift;
