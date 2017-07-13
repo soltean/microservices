@@ -15,6 +15,12 @@
     </modules>
 
     <artifactId>bid-service</artifactId>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.so</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

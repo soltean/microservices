@@ -1,7 +1,7 @@
-package so.app;
+package com.so.app;
 
+import com.so.config.ItemViewWebConfiguration;
 import org.springframework.boot.SpringApplication;
-import so.config.ItemViewWebConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.FeignClient;

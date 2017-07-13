@@ -2,21 +2,7 @@
 
 set -e
 
-if [ -z "$DOCKER_HOST_IP" ] ; then
-  if [ -z "$DOCKER_HOST" ] ; then
-    export DOCKER_HOST_IP=`hostname`
-  else
-    echo using ${DOCKER_HOST?}
-    XX=${DOCKER_HOST%\:*}
-    export DOCKER_HOST_IP=${XX#tcp\:\/\/}
-  fi
-  echo set DOCKER_HOST_IP $DOCKER_HOST_IP
-fi
-
-if [ -z "$SPRING_DATA_MONGODB_URI" ] ; then
-  export SPRING_DATA_MONGODB_URI=mongodb://${DOCKER_HOST_IP?}/bids
-  echo Set SPRING_DATA_MONGODB_URI $SPRING_DATA_MONGODB_URI
-fi
+echo DOCKER_HOST_IP is $DOCKER_HOST_IP
 
 DOCKER_COMPOSE="docker-compose -p items_and_bids"
 
@@ -46,11 +32,13 @@ ${DOCKER_COMPOSE?} build
 
 ${DOCKER_COMPOSE?} up -d
 
-./wait-for-services.sh $DOCKER_HOST_IP 8081 8082 8083
+echo "Waiting for services"
+echo $DOCKER_HOST_IP
+./wait-for-services.sh $DOCKER_HOST_IP 8081 8082 8083 8084
 
 set -e
 
-if [ $NO_RM = false ] ; then
-  ${DOCKER_COMPOSE?} stop
-  ${DOCKER_COMPOSE?} rm -v --force
-fi
+#if [ $NO_RM = false ] ; then
+#  ${DOCKER_COMPOSE?} stop
+#  ${DOCKER_COMPOSE?} rm -v --force
+#fi

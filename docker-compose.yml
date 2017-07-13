@@ -1,9 +1,9 @@
 bidcommandside:
   extends:
     file: docker-compose-common.yml
-    service: customercommandside
+    service: bidcommandside
   volumes:
-    - ./bid-service/bid-command-side-web/target:/app
+    - ./bid-service/bid-service-command-web/target:/app
 
 bidqueryside:
   extends:
@@ -19,7 +19,7 @@ itemcommandside:
     file: docker-compose-common.yml
     service: itemcommandside
   volumes:
-    - ./item-service/item-command-side/target:/app
+    - ./item-service/item-service-command-web/target:/app
 
 itemqueryside:
   extends:

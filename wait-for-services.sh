@@ -20,7 +20,7 @@ while [[ "$done" = false ]]; do
 		echo connected
 		break;
   fi
-	#curl -q http://${1?}:8080/health >& /dev/null && curl -q http://${1?}:8081/health >& /dev/null && curl -q http://${1?}:8082/health >& /dev/null
+	#curl -q http://${1?}:8081/health >& /dev/null && curl -q http://${1?}:8082/health >& /dev/null && curl -q http://${1?}:8083/health >& /dev/null && curl -q http://${1?}:8084/health >& /dev/null
 	echo -n .
 	sleep 1
 done

@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Import;
 @SpringBootApplication
 @Import(ItemWebConfiguration.class)
 @EnableEurekaClient
-@FeignClient("http://item-service")
+@FeignClient("http://item-service-command")
 public class Application {
 
     public static void main(String[] args) {

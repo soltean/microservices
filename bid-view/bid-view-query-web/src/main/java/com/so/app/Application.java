@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Import;
  * Created by sergiu.oltean on 5/16/2017.
  */
 @SpringBootApplication
-@EnableAutoConfiguration
 @Import(BidViewWebConfiguration.class)
 @EnableEurekaClient
 @FeignClient("http://bid-service-query")

@@ -1,4 +1,4 @@
-package so.config;
+package com.so.config;
 
 import io.eventuate.javaclient.driver.EventuateDriverConfiguration;
 import org.springframework.context.annotation.ComponentScan;

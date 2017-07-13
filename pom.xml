@@ -31,6 +31,7 @@
         <springdatajpa.version>1.10.6.RELEASE</springdatajpa.version>
         <springdatacommons.version>1.12.6.RELEASE</springdatacommons.version>
         <java.version>1.8</java.version>
+        <start-class>com.so.app.Application</start-class>
     </properties>
 
     <dependencyManagement>
@@ -158,10 +159,23 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-           <!-- <plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>-->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <attach>false</attach>
+                </configuration>
+               <!-- <configuration>
+                    <classifier>exec</classifier>
+                </configuration>-->
+            </plugin>
         </plugins>
         <finalName>${project.artifactId}</finalName>
     </build>
