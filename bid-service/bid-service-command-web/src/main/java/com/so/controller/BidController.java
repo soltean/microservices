@@ -18,16 +18,21 @@ import java.util.concurrent.CompletableFuture;
 @RestController
 public class BidController {
 
-    private BidService bidService;
+	private BidService bidService;
 
-    @Autowired
-    public BidController(BidService bidService) {
-        this.bidService = bidService;
-    }
+	@Autowired
+	public BidController(BidService bidService) {
+		this.bidService = bidService;
+	}
 
-    @RequestMapping(value = "/bids", method = RequestMethod.POST)
-    public CompletableFuture<ResponseEntity> createBid(@RequestBody BidDto bid) {
-        return bidService.addBid(bid.getItemCode(), bid.getAmount()).thenApply(b -> new ResponseEntity(b.getEntityId(), HttpStatus.OK));
-    }
+	@RequestMapping(value = "/bids", method = RequestMethod.POST)
+	public CompletableFuture<ResponseEntity> createBid(@RequestBody BidDto bid) {
+		return bidService.addBid(bid.getItemCode(), bid.getAmount()).thenApply(b -> new ResponseEntity(b.getEntityId(), HttpStatus.OK));
+	}
+
+	@RequestMapping(value = "/a", method = RequestMethod.GET)
+	public String aaa() {
+		return "GOOD";
+	}
 
 }

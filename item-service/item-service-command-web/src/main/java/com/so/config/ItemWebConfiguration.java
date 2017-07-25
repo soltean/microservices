@@ -10,7 +10,7 @@ import com.so.config.ItemConfiguration;
  * Created by sergiu.oltean on 5/8/2017.
  */
 @Configuration
-@ComponentScan
+@ComponentScan("com.so")
 @Import({ ItemConfiguration.class, EventuateDriverConfiguration.class })
 public class ItemWebConfiguration {
 

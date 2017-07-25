@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Import;
  * Created by sergiu.oltean on 5/23/2017.
  */
 @Configuration
-@ComponentScan
-@Import({ EventuateDriverConfiguration.class })
+@ComponentScan("com.so")
+@Import({ ItemViewConfiguration.class, EventuateDriverConfiguration.class })
 public class ItemViewWebConfiguration {
 
 }
