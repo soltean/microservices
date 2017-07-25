@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  */
 @Configuration
 @EnableEventHandlers
-@EnableMongoRepositories
+@EnableMongoRepositories("com.so.repository")
 public class ItemViewConfiguration {
 
 }

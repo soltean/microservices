@@ -7,7 +7,6 @@ import com.so.view.ItemView;
 /**
  * Created by sergiu.oltean on 5/12/2017.
  */
-@Repository
 public interface ItemViewRepository extends MongoRepository<ItemView, String> {
 
 }
