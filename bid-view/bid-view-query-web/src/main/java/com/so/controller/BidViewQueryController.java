@@ -26,7 +26,7 @@ public class BidViewQueryController {
 		return new ResponseEntity<>(bids, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/bids/{itemCode}", method = RequestMethod.GET)
+	@RequestMapping(value = "/bids/winning/{itemCode}", method = RequestMethod.GET)
 	public ResponseEntity<BidView> getWinningBid(@PathVariable String itemCode) {
 		BidView bid = bidViewService.findWinningBid(itemCode);
 		return new ResponseEntity<>(bid, HttpStatus.OK);

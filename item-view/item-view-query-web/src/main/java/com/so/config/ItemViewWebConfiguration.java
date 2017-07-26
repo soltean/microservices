@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  */
 @Configuration
 @ComponentScan("com.so")
-
 @Import({ ItemViewConfiguration.class, EventuateDriverConfiguration.class })
 public class ItemViewWebConfiguration {
 
