@@ -2,7 +2,6 @@ package com.so.view;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import com.so.model.ItemState;
 
 /**
  * Created by sergiu.oltean on 5/12/2017.
@@ -13,12 +12,10 @@ public class ItemView {
     private int reservePrice;
     @Id
     private String code;
-    private ItemState itemState;
 
     public ItemView(String code, int reservePrice) {
         this.code = code;
         this.reservePrice = reservePrice;
-        this.itemState = ItemState.NEW;
     }
 
     public int getReservePrice() {
@@ -37,11 +34,4 @@ public class ItemView {
         this.code = code;
     }
 
-    public ItemState getItemState() {
-        return itemState;
-    }
-
-    public void setItemState(ItemState itemState) {
-        this.itemState = itemState;
-    }
 }

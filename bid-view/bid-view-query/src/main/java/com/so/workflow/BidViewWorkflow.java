@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.so.events.bid.CreateBidEvent;
 import com.so.service.BidViewService;
 import com.so.view.BidView;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by sergiu.oltean on 5/24/2017.
  */
 @EventSubscriber(id = "bidViewWorkflow")
+@Component
 public class BidViewWorkflow {
 
 	private BidViewService bidViewService;

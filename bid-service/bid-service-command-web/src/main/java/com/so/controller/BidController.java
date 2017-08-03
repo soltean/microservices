@@ -1,6 +1,6 @@
 package com.so.controller;
 
-import com.so.dto.BidDto;
+import com.so.dto.BidRequest;
 import com.so.service.BidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class BidController {
 	}
 
 	@RequestMapping(value = "/bids", method = RequestMethod.POST)
-	public CompletableFuture<ResponseEntity> createBid(@RequestBody BidDto bid) {
+	public CompletableFuture<ResponseEntity> createBid(@RequestBody BidRequest bid) {
 		return bidService.addBid(bid.getItemCode(), bid.getAmount()).thenApply(b -> new ResponseEntity(b.getEntityId(), HttpStatus.OK));
 	}
 

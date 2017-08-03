@@ -55,7 +55,7 @@ bidcommandside:
     file: docker-compose-common.yml
     service: bidcommandside
   volumes:
-    - ./bid-service/bid-command-side-web/target:/app
+    - ./bid-service/bid-service-command-web/target:/app
   links:
     - mysql
     - kafka
@@ -97,7 +97,7 @@ itemcommandside:
     file: docker-compose-common.yml
     service: itemcommandside
   volumes:
-    - ./item-service/item-command-side-web/target:/app
+    - ./item-service/item-service-command-web/target:/app
   links:
     - mysql
     - kafka

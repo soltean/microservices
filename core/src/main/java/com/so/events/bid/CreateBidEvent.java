@@ -5,14 +5,17 @@ package com.so.events.bid;
  */
 public class CreateBidEvent extends BidEvent {
 
-	private int amount;
+    private int amount;
 
-	public CreateBidEvent(String itemCode, int amount) {
-		super(itemCode);
-		this.amount = amount;
-	}
+    public CreateBidEvent(String itemCode, int amount) {
+        super(itemCode);
+        this.amount = amount;
+    }
 
-	public int getAmount() {
-		return amount;
-	}
+    public CreateBidEvent() {
+    }
+
+    public int getAmount() {
+        return amount;
+    }
 }

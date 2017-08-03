@@ -15,6 +15,9 @@ public class BidEvent implements Event {
 		this.itemCode = itemCode;
 	}
 
+	public BidEvent() {
+	}
+
 	public String getItemCode() {
 		return itemCode;
 	}

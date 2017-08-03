@@ -7,6 +7,6 @@ import io.eventuate.EventEntity;
  * Created by sergiu.oltean on 5/9/2017.
  */
 @EventEntity(entity = "com.so.aggregate.ItemAggregate")
-public class ItemEvent implements Event {
+public interface ItemEvent extends Event {
 
 }

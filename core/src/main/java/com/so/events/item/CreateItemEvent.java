@@ -3,22 +3,25 @@ package com.so.events.item;
 /**
  * Created by sergiu.oltean on 5/9/2017.
  */
-public class CreateItemEvent extends ItemEvent {
+public class CreateItemEvent implements ItemEvent {
 
-	private final String itemCode;
-	private final int reservePrice;
+    private String itemCode;
+    private int reservePrice;
 
-	public CreateItemEvent(String itemCode, int reservePrice) {
-		this.itemCode = itemCode;
-		this.reservePrice = reservePrice;
-	}
+    public CreateItemEvent(String itemCode, int reservePrice) {
+        this.itemCode = itemCode;
+        this.reservePrice = reservePrice;
+    }
 
-	public String getItemCode() {
-		return itemCode;
-	}
+    public CreateItemEvent() {
+    }
 
-	public int getReservePrice() {
-		return reservePrice;
-	}
+    public String getItemCode() {
+        return itemCode;
+    }
+
+    public int getReservePrice() {
+        return reservePrice;
+    }
 
 }

@@ -33,6 +33,9 @@ public class BidView {
 		this.state = bidState;
 	}
 
+	public BidView() {
+	}
+
 	public String getItemCode() {
 		return itemCode;
 	}
