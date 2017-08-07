@@ -33,7 +33,6 @@ ${DOCKER_COMPOSE?} build
 ${DOCKER_COMPOSE?} up -d
 
 echo "Waiting for services"
-echo $DOCKER_HOST_IP
 ./wait-for-services.sh $DOCKER_HOST_IP 8081 8082 8083 8084
 
 set -e
