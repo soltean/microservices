@@ -14,6 +14,7 @@
         <module>bid-service</module>
         <module>bid-view</module>
         <module>item-view</module>
+        <module>discovery</module>
     </modules>
 
     <parent>

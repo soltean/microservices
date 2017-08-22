@@ -5,6 +5,10 @@ zookeeper:
     - 2888:2888
     - 3888:3888
 
+eureka:
+  build: ./discovery
+  ports:
+    - "8761:8761"
 
 kafka:
   image: eventuateio/eventuateio-local-kafka:0.10.0
