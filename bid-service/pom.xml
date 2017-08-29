@@ -18,7 +18,7 @@
     <dependencies>
         <dependency>
             <groupId>com.so</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>feign-clients</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

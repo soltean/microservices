@@ -1,6 +1,7 @@
 package com.so.controller;
 
-import com.so.dto.BidRequest;
+import com.so.feign.BidCommandFeignClient;
+import com.so.model.BidRequest;
 import com.so.service.BidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
  * Created by sergiu.oltean on 5/8/2017.
  */
 @RestController
-public class BidController {
+public class BidController implements BidCommandFeignClient {
 
 	private BidService bidService;
 
@@ -29,10 +30,4 @@ public class BidController {
 	public CompletableFuture<ResponseEntity> createBid(@RequestBody BidRequest bid) {
 		return bidService.addBid(bid.getItemCode(), bid.getAmount()).thenApply(b -> new ResponseEntity(b.getEntityId(), HttpStatus.OK));
 	}
-
-	@RequestMapping(value = "/a", method = RequestMethod.GET)
-	public String aaa() {
-		return "GOOD";
-	}
-
 }

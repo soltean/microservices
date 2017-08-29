@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: api
+server:
+  port: ${PORT:9001}

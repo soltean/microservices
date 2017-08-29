@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import com.so.feign.ItemViewFeignClient;
 import com.so.service.ItemViewService;
 import com.so.view.ItemView;
 
@@ -14,7 +15,7 @@ import com.so.view.ItemView;
  * Created by sergiu.oltean on 5/23/2017.
  */
 @RestController
-public class ItemViewQueryController {
+public class ItemViewQueryController implements ItemViewFeignClient<ItemView> {
 
 	private ItemViewService itemViewService;
 

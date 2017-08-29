@@ -1,4 +1,4 @@
-package com.so.dto;
+package com.so.model;
 
 /**
  * Created by sergiu.oltean on 5/8/2017.

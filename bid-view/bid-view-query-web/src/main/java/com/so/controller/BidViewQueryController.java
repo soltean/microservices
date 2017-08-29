@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import com.so.feign.BidViewFeignClient;
 import com.so.service.BidViewService;
 import com.so.view.BidView;
 
@@ -15,7 +16,7 @@ import com.so.view.BidView;
  * Created by sergiu.oltean on 5/23/2017.
  */
 @RestController
-public class BidViewQueryController {
+public class BidViewQueryController implements BidViewFeignClient<BidView>{
 
 	@Autowired
 	private BidViewService bidViewService;
