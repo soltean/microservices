@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Import;
  */
 @SpringBootApplication
 @Import(BidWebConfiguration.class)
-@EnableEurekaClient
 public class Application {
 
     public static void main(String[] args) {
