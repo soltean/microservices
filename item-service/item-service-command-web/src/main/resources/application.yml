@@ -8,4 +8,4 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.200.10.1:8761/eureka/
+      defaultZone: http://${EUREKA}}/eureka/
