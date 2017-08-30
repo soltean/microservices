@@ -1,20 +1,18 @@
 package com.so.controller;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import com.so.feign.BidCommandFeignClient;
 import com.so.feign.BidViewFeignClient;
 import com.so.feign.ItemCommandFeignClient;
 import com.so.feign.ItemViewFeignClient;
 import com.so.model.BidRequest;
 import com.so.model.ItemRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 public class ApiController {
@@ -32,7 +30,7 @@ public class ApiController {
 	private BidViewFeignClient bidViewFeignClient;
 
 	@RequestMapping(value = "/items", method = RequestMethod.POST)
-	private CompletableFuture<ResponseEntity> createItem(@RequestBody ItemRequest item) {
+	private ResponseEntity<String> createItem(@RequestBody ItemRequest item) throws ExecutionException, InterruptedException {
 		return itemCommandFeignClient.createItem(item);
 	}
 

@@ -8,3 +8,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://${EUREKA}/eureka/
+  instance:
+    preferIpAddress: true
+    ip-address: ${DOCKER_HOST_IP}
+    non-secure-port: 8081

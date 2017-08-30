@@ -73,7 +73,8 @@ bidcommandside:
     EVENTUATELOCAL_ZOOKEEPER_CONNECTION_STRING: zookeeper:2181
     EVENTUATELOCAL_CDC_DB_USER_NAME: root
     EVENTUATELOCAL_CDC_DB_PASSWORD: rootpassword
-    EUREKA: 10.224.8.68:8761
+    EUREKA: ${DOCKER_HOST_IP}:8761
+    DOCKER_HOST_IP: ${DOCKER_HOST_IP}
 
 bidqueryside:
   extends:
@@ -96,7 +97,8 @@ bidqueryside:
     EVENTUATELOCAL_CDC_DB_USER_NAME: root
     EVENTUATELOCAL_CDC_DB_PASSWORD: rootpassword
     SPRING_DATA_MONGODB_URI: mongodb://mongodb/bids
-    EUREKA: 10.224.8.68:8761
+    EUREKA: ${DOCKER_HOST_IP}:8761
+    DOCKER_HOST_IP: ${DOCKER_HOST_IP}
 
 itemcommandside:
   extends:
@@ -117,7 +119,8 @@ itemcommandside:
     EVENTUATELOCAL_ZOOKEEPER_CONNECTION_STRING: zookeeper:2181
     EVENTUATELOCAL_CDC_DB_USER_NAME: root
     EVENTUATELOCAL_CDC_DB_PASSWORD: rootpassword
-    EUREKA: 10.224.8.68:8761
+    EUREKA: ${DOCKER_HOST_IP}:8761
+    DOCKER_HOST_IP: ${DOCKER_HOST_IP}
 
 itemqueryside:
   extends:
@@ -140,4 +143,5 @@ itemqueryside:
     EVENTUATELOCAL_CDC_DB_USER_NAME: root
     EVENTUATELOCAL_CDC_DB_PASSWORD: rootpassword
     SPRING_DATA_MONGODB_URI: mongodb://mongodb/items
-    EUREKA: 10.224.8.68:8761
+    EUREKA: ${DOCKER_HOST_IP}:8761
+    DOCKER_HOST_IP: ${DOCKER_HOST_IP}
