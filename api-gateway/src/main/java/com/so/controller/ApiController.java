@@ -1,5 +1,6 @@
 package com.so.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.so.feign.BidCommandFeignClient;
 import com.so.feign.BidViewFeignClient;
 import com.so.feign.ItemCommandFeignClient;
@@ -35,22 +36,22 @@ public class ApiController {
 	}
 
 	@RequestMapping(value = "/items", method = RequestMethod.GET)
-	private ResponseEntity<List<?>> findAllItems() {
+	private ResponseEntity<String> findAllItems() throws JsonProcessingException {
 		return itemViewFeignClient.findAllItems();
 	}
 
 	@RequestMapping(value = "/bids", method = RequestMethod.POST)
-	private CompletableFuture<ResponseEntity> createBid(@RequestBody BidRequest bid) {
+	private ResponseEntity<String> createBid(@RequestBody BidRequest bid) throws ExecutionException, InterruptedException {
 		return bidCommandFeignClient.createBid(bid);
 	}
 
 	@RequestMapping(value = "/bids/{itemCode}", method = RequestMethod.GET)
-	private ResponseEntity<List<?>> getBidsForItem(@PathVariable String itemCode) {
+	private ResponseEntity<String> getBidsForItem(@PathVariable String itemCode) throws JsonProcessingException {
 		return bidViewFeignClient.getBidsForItem(itemCode);
 	}
 
 	@RequestMapping(value = "/bids/winning/{itemCode}", method = RequestMethod.GET)
-	private ResponseEntity<?> getWinningBid(@PathVariable String itemCode) {
+	private ResponseEntity<String> getWinningBid(@PathVariable String itemCode) throws JsonProcessingException {
 		return bidViewFeignClient.getWinningBid(itemCode);
 	}
 

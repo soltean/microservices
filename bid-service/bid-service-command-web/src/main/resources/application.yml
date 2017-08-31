@@ -2,7 +2,7 @@ spring:
   application:
     name: bid-command
 server:
-  port: ${PORT:8761}
+  port: ${PORT:8081}
 
 eureka:
   client:

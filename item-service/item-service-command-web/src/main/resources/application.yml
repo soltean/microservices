@@ -3,12 +3,12 @@ spring:
     name: item-command
 
 server:
-  port: ${PORT:8761}
+  port: ${PORT:8083}
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.200.10.1:8761/eureka/
+      defaultZone: http://${EUREKA}/eureka/
   instance:
     preferIpAddress: true
     ip-address: ${DOCKER_HOST_IP}

@@ -1,9 +1,13 @@
 spring:
   application:
-    name: api
+    name: api-gateway
 server:
   port: ${PORT:9001}
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://10.200.10.1:8761/eureka/
+      defaultZone: http://${EUREKA}/eureka/
+  instance:
+    preferIpAddress: true
+    ip-address: ${DOCKER_HOST_IP}
+    non-secure-port: 9001

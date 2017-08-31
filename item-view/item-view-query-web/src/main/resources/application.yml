@@ -3,7 +3,7 @@ spring:
     name: item-view
 
 server:
-  port: ${PORT:8761}
+  port: ${PORT:8084}
 
 eureka:
   client:
@@ -13,4 +13,5 @@ eureka:
     preferIpAddress: true
     ip-address: ${DOCKER_HOST_IP}
     non-secure-port: 8084
-
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 5

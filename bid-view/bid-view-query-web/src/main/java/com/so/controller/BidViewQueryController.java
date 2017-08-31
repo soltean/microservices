@@ -1,5 +1,7 @@
 package com.so.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.so.feign.BidViewFeignClient;
 import com.so.service.BidViewService;
 import com.so.view.BidView;
@@ -7,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,16 +22,18 @@ public class BidViewQueryController implements BidViewFeignClient {
     @Autowired
     private BidViewService bidViewService;
 
-    @RequestMapping(value = "/bids/{itemCode}", method = RequestMethod.GET)
-    public ResponseEntity getBidsForItem(@PathVariable String itemCode) {
+    private ObjectMapper objectMapper = new ObjectMapper();
+
+    public ResponseEntity<String> getBidsForItem(@PathVariable String itemCode) throws JsonProcessingException {
         List<BidView> bids = bidViewService.getBidsForItem(itemCode);
-        return new ResponseEntity<>(bids, HttpStatus.OK);
+        String bidsAsJson = objectMapper.writeValueAsString(bids);
+        return new ResponseEntity<>(bidsAsJson, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/bids/winning/{itemCode}", method = RequestMethod.GET)
-    public ResponseEntity getWinningBid(@PathVariable String itemCode) {
+    public ResponseEntity<String> getWinningBid(@PathVariable String itemCode) throws JsonProcessingException {
         BidView bid = bidViewService.findWinningBid(itemCode);
-        return new ResponseEntity<>(bid, HttpStatus.OK);
+        String bidAsJson = objectMapper.writeValueAsString(bid);
+        return new ResponseEntity<>(bidAsJson, HttpStatus.OK);
     }
 
 }

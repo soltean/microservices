@@ -1,11 +1,13 @@
 server:
   port: 8761
 
-#standalone
 eureka:
+  server:
+    eviction-interval-timer-in-ms: 60000
   instance:
     hostname: localhost
   client:
     registerWithEureka: false
     fetchRegistry: false
+
 
