@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.netflix.hystrix.contrib.javanica.conf.HystrixPropertiesManager;
 import com.so.feign.BidCommandFeignClient;
 import com.so.feign.BidViewFeignClient;
 import com.so.feign.ItemCommandFeignClient;
@@ -50,7 +52,8 @@ public class ApiController {
 		return responseEntity;
 	}
 
-	@HystrixCommand(fallbackMethod = "getLatestItemsFromCache")
+	@HystrixCommand(fallbackMethod = "getLatestItemsFromCache", commandProperties = {
+			@HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS, value = "5000") })
 	@RequestMapping(value = "/items", method = RequestMethod.GET)
 	private ResponseEntity<String> findAllItems() throws JsonProcessingException {
 		return itemViewFeignClient.findAllItems();
@@ -70,7 +73,8 @@ public class ApiController {
 		return responseEntity;
 	}
 
-	@HystrixCommand(fallbackMethod = "getLatestBidsFromCache")
+	@HystrixCommand(fallbackMethod = "getLatestBidsFromCache", commandProperties = {
+			@HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS, value = "5000") })
 	@RequestMapping(value = "/bids/{itemCode}", method = RequestMethod.GET)
 	private ResponseEntity<String> getBidsForItem(@PathVariable String itemCode) throws JsonProcessingException {
 		return bidViewFeignClient.getBidsForItem(itemCode);
@@ -81,7 +85,8 @@ public class ApiController {
 		return new ResponseEntity<>(objectMapper.writeValueAsString(latestBidsForItem), HttpStatus.OK);
 	}
 
-	@HystrixCommand(fallbackMethod = "cannotDetermineNow")
+	@HystrixCommand(fallbackMethod = "cannotDetermineNow", commandProperties = {
+			@HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS, value = "5000") })
 	@RequestMapping(value = "/bids/winning/{itemCode}", method = RequestMethod.GET)
 	private ResponseEntity<String> getWinningBid(@PathVariable String itemCode) throws JsonProcessingException {
 		return bidViewFeignClient.getWinningBid(itemCode);
