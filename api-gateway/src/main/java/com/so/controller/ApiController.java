@@ -1,5 +1,6 @@
 package com.so.controller;
 
+import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.so.feign.BidCommandFeignClient;
 import com.so.feign.BidViewFeignClient;
@@ -37,10 +39,15 @@ public class ApiController {
 	@Autowired
 	private CacheService cacheService;
 
+	private ObjectMapper objectMapper = new ObjectMapper();
+
 	@RequestMapping(value = "/items", method = RequestMethod.POST)
 	private ResponseEntity<String> createItem(@RequestBody ItemRequest item) throws ExecutionException, InterruptedException, JsonProcessingException {
-		cacheService.saveItemToCache(item.getItemCode(), item);
-		return itemCommandFeignClient.createItem(item);
+		ResponseEntity<String> responseEntity = itemCommandFeignClient.createItem(item);
+		if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
+			cacheService.saveItemToCache(item.getItemCode(), item);
+		}
+		return responseEntity;
 	}
 
 	@HystrixCommand(fallbackMethod = "getLatestItemsFromCache")
@@ -50,13 +57,17 @@ public class ApiController {
 	}
 
 	private ResponseEntity<String> getLatestFromCache() throws JsonProcessingException {
-		return new ResponseEntity<>("[]", HttpStatus.OK);
+		Collection<ItemRequest> latest = cacheService.getItemsFromCache();
+		return new ResponseEntity<>(objectMapper.writeValueAsString(latest), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/bids", method = RequestMethod.POST)
 	private ResponseEntity<String> createBid(@RequestBody BidRequest bid) throws ExecutionException, InterruptedException, JsonProcessingException {
-		cacheService.saveBidToCache(bid.getItemCode(), bid);
-		return bidCommandFeignClient.createBid(bid);
+		ResponseEntity<String> responseEntity = bidCommandFeignClient.createBid(bid);
+		if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
+			cacheService.saveBidToCache(bid.getItemCode(), bid);
+		}
+		return responseEntity;
 	}
 
 	@HystrixCommand(fallbackMethod = "getLatestBidsFromCache")
@@ -66,7 +77,8 @@ public class ApiController {
 	}
 
 	private ResponseEntity<String> getLatestBidsFromCache(String itemCode) throws JsonProcessingException {
-		return new ResponseEntity<>("[]", HttpStatus.OK);
+		Collection<BidRequest> latestBidsForItem = cacheService.getBidsFromCache(itemCode);
+		return new ResponseEntity<>(objectMapper.writeValueAsString(latestBidsForItem), HttpStatus.OK);
 	}
 
 	@HystrixCommand(fallbackMethod = "cannotDetermineNow")
