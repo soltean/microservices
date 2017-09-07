@@ -7,20 +7,15 @@
         <groupId>com.so</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>discovery</artifactId>
-
+    <artifactId>hystrix-dashboard</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka-server</artifactId>
+            <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
         </dependency>
     </dependencies>
+
 
 </project>

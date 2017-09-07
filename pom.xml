@@ -17,6 +17,8 @@
         <module>discovery</module>
         <module>api-gateway</module>
         <module>feign-clients</module>
+        <module>hystrix-dashboard</module>
+        <module>turbine</module>
     </modules>
 
     <parent>
