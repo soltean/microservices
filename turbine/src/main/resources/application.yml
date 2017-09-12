@@ -1,2 +1,22 @@
+spring:
+  application:
+    name: turbine
+
 server:
   port: 7001
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA}/eureka/
+  instance:
+    preferIpAddress: true
+    ip-address: ${DOCKER_HOST_IP}
+    non-secure-port: 7001
+
+turbine:
+  aggregator:
+    clusterNameExpression: new String("default")
+    clusterConfig: ITEMS
+    #http://localhost:8095/turbine.stream?cluster=ITEMS
+  appConfig: API-GATEWAY,BID-COMMAND,BID-VIEW,ITEM-COMMAND,ITEM-VIEW

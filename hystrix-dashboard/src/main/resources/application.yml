@@ -1,2 +1,14 @@
+spring:
+  application:
+    name: hystrix
 server:
   port: 7000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA}/eureka/
+  instance:
+    preferIpAddress: true
+    ip-address: ${DOCKER_HOST_IP}
+    non-secure-port: 7000

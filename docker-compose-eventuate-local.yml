@@ -176,3 +176,25 @@ api-gateway:
     EVENTUATELOCAL_ZOOKEEPER_CONNECTION_STRING: zookeeper:2181
     EVENTUATELOCAL_CDC_DB_USER_NAME: root
     EVENTUATELOCAL_CDC_DB_PASSWORD: rootpassword
+
+hystrix:
+  build: ./hystrix-dashboard
+  links:
+   - eureka
+  ports:
+    - "7000:7000"
+  mem_limit: 8g
+  environment:
+    EUREKA: ${DOCKER_HOST_IP}:8761
+    DOCKER_HOST_IP: ${DOCKER_HOST_IP}
+
+turbine:
+  build: ./turbine
+  links:
+   - eureka
+  ports:
+    - "7001:7001"
+  mem_limit: 8g
+  environment:
+    EUREKA: ${DOCKER_HOST_IP}:8761
+    DOCKER_HOST_IP: ${DOCKER_HOST_IP}
