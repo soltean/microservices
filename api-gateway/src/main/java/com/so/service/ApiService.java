@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -40,7 +38,7 @@ public class ApiService {
 
 	private ObjectMapper objectMapper = new ObjectMapper();
 
-	public ResponseEntity<String> createItem(@RequestBody ItemRequest item) throws ExecutionException, InterruptedException, JsonProcessingException {
+	public ResponseEntity<String> createItem(ItemRequest item) throws ExecutionException, InterruptedException, JsonProcessingException {
 		ResponseEntity<String> responseEntity = itemCommandFeignClient.createItem(item);
 		if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
 			cacheService.saveItemToCache(item.getItemCode(), item);
@@ -59,7 +57,7 @@ public class ApiService {
 		return new ResponseEntity<>(objectMapper.writeValueAsString(latest), HttpStatus.OK);
 	}
 
-	public ResponseEntity<String> createBid(@RequestBody BidRequest bid) throws ExecutionException, InterruptedException, JsonProcessingException {
+	public ResponseEntity<String> createBid(BidRequest bid) throws ExecutionException, InterruptedException, JsonProcessingException {
 		ResponseEntity<String> responseEntity = bidCommandFeignClient.createBid(bid);
 		if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
 			cacheService.saveBidToCache(bid.getItemCode(), bid);
@@ -69,7 +67,7 @@ public class ApiService {
 
 	@HystrixCommand(fallbackMethod = "getLatestBidsFromCache", commandKey = "getBids", commandProperties = {
 			@HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS, value = "5000") })
-	public ResponseEntity<String> getBidsForItem(@PathVariable String itemCode) throws JsonProcessingException {
+	public ResponseEntity<String> getBidsForItem(String itemCode) throws JsonProcessingException {
 		return bidViewFeignClient.getBidsForItem(itemCode);
 	}
 
@@ -80,7 +78,7 @@ public class ApiService {
 
 	@HystrixCommand(fallbackMethod = "cannotDetermineNow", commandKey = "getWinningBid", commandProperties = {
 			@HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS, value = "5000") })
-	public ResponseEntity<String> getWinningBid(@PathVariable String itemCode) throws JsonProcessingException {
+	public ResponseEntity<String> getWinningBid(String itemCode) throws JsonProcessingException {
 		return bidViewFeignClient.getWinningBid(itemCode);
 	}
 
