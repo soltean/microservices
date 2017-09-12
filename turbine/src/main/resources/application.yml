@@ -15,6 +15,5 @@ eureka:
     non-secure-port: 7001
 
 turbine:
-  aggregator:
-    #http://localhost:8095/turbine.stream?cluster=ITEMS
-  appConfig: API-GATEWAY,BID-COMMAND,BID-VIEW,ITEM-COMMAND,ITEM-VIEW
+  clusterNameExpression: new String('default')
+  appConfig: API-GATEWAY

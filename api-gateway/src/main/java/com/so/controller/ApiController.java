@@ -2,6 +2,7 @@ package com.so.controller;
 
 import java.util.concurrent.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,7 @@ public class ApiController {
 		return apiService.createItem(item);
 	}
 
-	@RequestMapping(value = "/items", method = RequestMethod.GET)
+	@RequestMapping(value = "/items", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<String> findAllItems() throws JsonProcessingException {
 		return apiService.findAllItems();
 	}
@@ -34,12 +35,12 @@ public class ApiController {
 		return apiService.createBid(bid);
 	}
 
-	@RequestMapping(value = "/bids/{itemCode}", method = RequestMethod.GET)
+	@RequestMapping(value = "/bids/{itemCode}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<String> getBidsForItem(@PathVariable String itemCode) throws JsonProcessingException {
 		return apiService.getBidsForItem(itemCode);
 	}
 
-	@RequestMapping(value = "/bids/winning/{itemCode}", method = RequestMethod.GET)
+	@RequestMapping(value = "/bids/winning/{itemCode}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<String> getWinningBid(@PathVariable String itemCode) throws JsonProcessingException {
 		return apiService.getWinningBid(itemCode);
 	}
