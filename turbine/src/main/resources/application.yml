@@ -16,7 +16,5 @@ eureka:
 
 turbine:
   aggregator:
-    clusterNameExpression: new String("default")
-    clusterConfig: ITEMS
     #http://localhost:8095/turbine.stream?cluster=ITEMS
   appConfig: API-GATEWAY,BID-COMMAND,BID-VIEW,ITEM-COMMAND,ITEM-VIEW
