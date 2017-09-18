@@ -38,6 +38,7 @@ public class ApiService {
 
 	private ObjectMapper objectMapper = new ObjectMapper();
 
+	//ZUUL FILTER???? create into cache
 	public ResponseEntity<String> createItem(ItemRequest item) throws ExecutionException, InterruptedException, JsonProcessingException {
 		ResponseEntity<String> responseEntity = itemCommandFeignClient.createItem(item);
 		if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
