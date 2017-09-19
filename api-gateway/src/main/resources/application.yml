@@ -11,3 +11,11 @@ eureka:
     preferIpAddress: true
     ip-address: ${DOCKER_HOST_IP}
     non-secure-port: 9001
+
+
+zuul:
+  routes:
+    item-command:
+      path: /items/**
+      serviceId: item-command
+      stripPrefix: false

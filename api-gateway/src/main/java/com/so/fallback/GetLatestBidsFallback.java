@@ -4,21 +4,21 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider;
-import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerMapping;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.netflix.zuul.context.RequestContext;
 import com.so.model.BidRequest;
 import com.so.service.CacheService;
 
 @Component
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class GetLatestBidsFallback implements ZuulFallbackProvider {
 
 	@Autowired
@@ -26,13 +26,8 @@ public class GetLatestBidsFallback implements ZuulFallbackProvider {
 
 	private ObjectMapper objectMapper = new ObjectMapper();
 
-	private String itemCode;
-
-	public GetLatestBidsFallback() {
-	}
-
-	public GetLatestBidsFallback(String itemCode) {
-		this.itemCode = itemCode;
+	public GetLatestBidsFallback(CacheService cacheService) {
+		this.cacheService = cacheService;
 	}
 
 	// Might be confusing: it's the serviceId property and not the route
@@ -43,6 +38,7 @@ public class GetLatestBidsFallback implements ZuulFallbackProvider {
 
 	@Override
 	public ClientHttpResponse fallbackResponse() {
+
 		return new ClientHttpResponse() {
 
 			@Override
@@ -67,6 +63,9 @@ public class GetLatestBidsFallback implements ZuulFallbackProvider {
 
 			@Override
 			public InputStream getBody() throws IOException {
+				//TODO: text this
+				HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
+				String itemCode = (String)request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
 				Collection<BidRequest> latestBidsForItem = cacheService.getBidsFromCache(itemCode);
 				return new ByteArrayInputStream(objectMapper.writeValueAsString(latestBidsForItem).getBytes());
 			}
