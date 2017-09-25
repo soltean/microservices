@@ -10,17 +10,16 @@ import org.springframework.util.StreamUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import com.so.model.ItemRequest;
+import com.so.model.BidRequest;
 import com.so.service.CacheService;
-import static com.so.config.FiltersOrder.ITEM_CACHE_SAVE_FILTER;
 
 @Component
-public class ItemCacheSaveFilter extends ZuulFilter {
+public class BidCacheSaveFilter extends ZuulFilter {
 
 	private CacheService cacheService;
 
 	@Autowired
-	private ItemCacheSaveFilter(CacheService cacheService) {
+	private BidCacheSaveFilter(CacheService cacheService) {
 		this.cacheService = cacheService;
 	}
 
@@ -38,7 +37,7 @@ public class ItemCacheSaveFilter extends ZuulFilter {
 	public boolean shouldFilter() {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
-		return request.getMethod().equals("POST") && request.getRequestURI().contains("items");
+		return request.getMethod().equals("POST") && request.getRequestURI().contains("bids");
 	}
 
 	@Override
@@ -49,13 +48,12 @@ public class ItemCacheSaveFilter extends ZuulFilter {
 			try {
 				ServletInputStream request = ctx.getRequest().getInputStream();
 				String req = StreamUtils.copyToString(request, Charset.defaultCharset());
-				ItemRequest itemRequest = new ObjectMapper().readValue(req, ItemRequest.class);
-				cacheService.saveItemToCache(itemRequest.getItemCode(), itemRequest);
+				BidRequest bidRequest = new ObjectMapper().readValue(req, BidRequest.class);
+				cacheService.saveBidToCache(bidRequest.getItemCode(), bidRequest);
 			} catch (IOException e) {
 				//log something - out of scope
 			}
 		}
-
 		return null;
 	}
 }

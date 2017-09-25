@@ -30,10 +30,9 @@ public class GetLatestBidsFallback implements ZuulFallbackProvider {
 		this.cacheService = cacheService;
 	}
 
-	// Might be confusing: it's the serviceId property and not the route
 	@Override
 	public String getRoute() {
-		return "getItems";
+		return "bid-view";
 	}
 
 	@Override
@@ -63,9 +62,9 @@ public class GetLatestBidsFallback implements ZuulFallbackProvider {
 
 			@Override
 			public InputStream getBody() throws IOException {
-				//TODO: text this
 				HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
-				String itemCode = (String)request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+				String itemCodeReq = (String)request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+				String itemCode = itemCodeReq.split("/")[1];
 				Collection<BidRequest> latestBidsForItem = cacheService.getBidsFromCache(itemCode);
 				return new ByteArrayInputStream(objectMapper.writeValueAsString(latestBidsForItem).getBytes());
 			}

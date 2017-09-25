@@ -9,13 +9,20 @@ eureka:
       defaultZone: http://${EUREKA}/eureka/
   instance:
     preferIpAddress: true
-    ip-address: ${DOCKER_HOST_IP}
+   #ip-address: ${DOCKER_HOST_IP}
     non-secure-port: 9001
-
 
 zuul:
   routes:
     item-command:
-      path: /items/**
+      path: /ic/**
       serviceId: item-command
-      stripPrefix: false
+    item-view:
+      path: /iv/**
+      serviceId: item-view
+    bid-command:
+      path: /bc/**
+      serviceId: bid-command
+    bid-view:
+      path: /bv/**
+      serviceId: bid-view

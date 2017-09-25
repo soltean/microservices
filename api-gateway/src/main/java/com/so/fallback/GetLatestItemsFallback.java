@@ -23,10 +23,9 @@ public class GetLatestItemsFallback implements ZuulFallbackProvider {
 
 	private ObjectMapper objectMapper = new ObjectMapper();
 
-	// Might be confusing: it's the serviceId property and not the route
 	@Override
 	public String getRoute() {
-		return "getItems";
+		return "item-view";
 	}
 
 	@Override
