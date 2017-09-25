@@ -17,12 +17,24 @@ zuul:
     item-command:
       path: /ic/**
       serviceId: item-command
+      retryable: true
     item-view:
       path: /iv/**
       serviceId: item-view
+      retryable: true
     bid-command:
       path: /bc/**
       serviceId: bid-command
+      retryable: true
     bid-view:
       path: /bv/**
       serviceId: bid-view
+      retryable: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
