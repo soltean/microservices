@@ -3,6 +3,8 @@ package com.so.service;
 import io.eventuate.AggregateRepository;
 import io.eventuate.EntityWithIdAndVersion;
 import java.util.concurrent.CompletableFuture;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.so.aggregate.BidAggregate;
@@ -14,6 +16,8 @@ import com.so.command.CreateBidCommand;
  */
 @Service
 public class BidService {
+
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private AggregateRepository<BidAggregate, BidCommand> bidRepository;
 

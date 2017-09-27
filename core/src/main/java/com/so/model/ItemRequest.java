@@ -23,4 +23,9 @@ public class ItemRequest {
 	public int getReservePrice() {
 		return reservePrice;
 	}
+
+	@Override
+	public String toString() {
+		return "ItemRequest{" + "itemCode='" + itemCode + '\'' + ", reservePrice=" + reservePrice + '}';
+	}
 }

@@ -3,6 +3,8 @@ package com.so.controller;
 import com.so.feign.BidCommandFeignClient;
 import com.so.model.BidRequest;
 import com.so.service.BidService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ import java.util.concurrent.ExecutionException;
  */
 @RestController
 public class BidController implements BidCommandFeignClient {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private BidService bidService;
 

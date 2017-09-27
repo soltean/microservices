@@ -3,6 +3,8 @@ package com.so.service;
 import com.so.model.BidState;
 import com.so.repository.BidViewRepository;
 import com.so.view.BidView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -18,6 +20,8 @@ import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatc
  */
 @Service
 public class BidViewService {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private BidViewRepository bidViewRepository;
 

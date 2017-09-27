@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.so.feign.ItemViewFeignClient;
 import com.so.service.ItemViewService;
 import com.so.view.ItemView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ import java.util.List;
  */
 @RestController
 public class ItemViewQueryController implements ItemViewFeignClient {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private ItemViewService itemViewService;
 
