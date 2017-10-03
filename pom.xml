@@ -19,6 +19,7 @@
         <module>feign-clients</module>
         <module>hystrix-dashboard</module>
         <module>turbine</module>
+        <module>zipkin</module>
     </modules>
 
     <parent>

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
@@ -15,6 +17,8 @@ import com.so.service.CacheService;
 
 @Component
 public class BidCacheSaveFilter extends ZuulFilter {
+
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private CacheService cacheService;
 
@@ -42,6 +46,7 @@ public class BidCacheSaveFilter extends ZuulFilter {
 
 	@Override
 	public Object run() {
+		logger.info("Caching bids");
 		RequestContext ctx = RequestContext.getCurrentContext();
 		int responseStatus = ctx.getResponse().getStatus();
 		if (responseStatus == 200) {
@@ -51,7 +56,7 @@ public class BidCacheSaveFilter extends ZuulFilter {
 				BidRequest bidRequest = new ObjectMapper().readValue(req, BidRequest.class);
 				cacheService.saveBidToCache(bidRequest.getItemCode(), bidRequest);
 			} catch (IOException e) {
-				//log something - out of scope
+				logger.error("An error occurred", e);
 			}
 		}
 		return null;

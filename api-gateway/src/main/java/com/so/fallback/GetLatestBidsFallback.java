@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +22,8 @@ import com.so.service.CacheService;
 
 @Component
 public class GetLatestBidsFallback implements ZuulFallbackProvider {
+
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private CacheService cacheService;
@@ -62,6 +66,7 @@ public class GetLatestBidsFallback implements ZuulFallbackProvider {
 
 			@Override
 			public InputStream getBody() throws IOException {
+				logger.info("Bid fallback activated");
 				HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
 				String itemCodeReq = (String)request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
 				String itemCode = itemCodeReq.split("/")[1];

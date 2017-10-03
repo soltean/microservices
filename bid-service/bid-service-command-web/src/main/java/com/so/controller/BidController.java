@@ -20,18 +20,20 @@ import java.util.concurrent.ExecutionException;
 @RestController
 public class BidController implements BidCommandFeignClient {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private BidService bidService;
+	private BidService bidService;
 
-    @Autowired
-    public BidController(BidService bidService) {
-        this.bidService = bidService;
-    }
+	@Autowired
+	public BidController(BidService bidService) {
+		this.bidService = bidService;
+	}
 
-    public ResponseEntity<String> createBid(@RequestBody BidRequest bid) throws ExecutionException, InterruptedException {
-        CompletableFuture<ResponseEntity> future = bidService.addBid(bid.getItemCode(), bid.getAmount()).thenApply(b -> new ResponseEntity(b.getEntityId(), HttpStatus.OK));
-        return future.get();
+	public ResponseEntity<String> createBid(@RequestBody BidRequest bid) throws ExecutionException, InterruptedException {
+		logger.info("Creating bid " + bid);
+		CompletableFuture<ResponseEntity> future = bidService.addBid(bid.getItemCode(), bid.getAmount())
+				.thenApply(b -> new ResponseEntity(b.getEntityId(), HttpStatus.OK));
+		return future.get();
 
-    }
+	}
 }

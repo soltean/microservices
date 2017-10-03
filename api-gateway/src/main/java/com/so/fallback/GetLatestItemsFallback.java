@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +19,8 @@ import com.so.service.CacheService;
 
 @Component
 public class GetLatestItemsFallback implements ZuulFallbackProvider {
+
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private CacheService cacheService;
@@ -54,6 +58,7 @@ public class GetLatestItemsFallback implements ZuulFallbackProvider {
 
 			@Override
 			public InputStream getBody() throws IOException {
+				logger.info("Item fallback activated");
 				Collection<ItemRequest> latest = cacheService.getItemsFromCache();
 				return new ByteArrayInputStream(objectMapper.writeValueAsString(latest).getBytes());
 			}
