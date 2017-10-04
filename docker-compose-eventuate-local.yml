@@ -198,3 +198,14 @@ turbine:
   environment:
     EUREKA: ${DOCKER_HOST_IP}:8761
     DOCKER_HOST_IP: ${DOCKER_HOST_IP}
+
+zipkin:
+  build: ./zipkin
+  links:
+   - eureka
+  ports:
+    - "9411:9411"
+  mem_limit: 8g
+  environment:
+    EUREKA: ${DOCKER_HOST_IP}:8761
+    DOCKER_HOST_IP: ${DOCKER_HOST_IP}
