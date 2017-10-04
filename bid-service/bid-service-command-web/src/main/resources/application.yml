@@ -1,6 +1,12 @@
 spring:
   application:
     name: bid-command
+  sleuth:
+    sampler:
+      percentage: 1.0
+    web:
+      skipPattern: (^cleanup.*)
+
 server:
   port: ${PORT:8081}
 
@@ -12,3 +18,7 @@ eureka:
     preferIpAddress: true
     ip-address: ${DOCKER_HOST_IP}
     non-secure-port: 8081
+
+logging:
+  level:
+   org.springframework.web: debug

@@ -1,6 +1,11 @@
 spring:
   application:
     name: item-command
+  sleuth:
+    sampler:
+      percentage: 1.0
+    web:
+      skipPattern: (^cleanup.*)
 
 server:
   port: ${PORT:8083}
@@ -14,3 +19,6 @@ eureka:
     ip-address: ${DOCKER_HOST_IP}
     non-secure-port: 8083
 
+logging:
+  level:
+   org.springframework.web: debug

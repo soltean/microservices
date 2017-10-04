@@ -1,6 +1,11 @@
 spring:
   application:
     name: item-view
+  sleuth:
+    sampler:
+      percentage: 1.0
+    web:
+      skipPattern: (^cleanup.*)
 
 server:
   port: ${PORT:8084}
@@ -15,3 +20,8 @@ eureka:
     non-secure-port: 8084
     leaseRenewalIntervalInSeconds: 10
     leaseExpirationDurationInSeconds: 5
+
+logging:
+  level:
+   org.springframework.web: debug
+

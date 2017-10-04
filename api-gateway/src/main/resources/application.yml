@@ -1,6 +1,12 @@
 spring:
   application:
     name: api-gateway
+  sleuth:
+    sampler:
+      percentage: 1.0
+    web:
+      skipPattern: (^cleanup.*)
+
 server:
   port: ${PORT:9001}
 eureka:
@@ -38,3 +44,8 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 5000
+
+logging:
+  level:
+   org.springframework.web: debug
+
