@@ -6,6 +6,8 @@ spring:
       percentage: 1.0
     web:
       skipPattern: (^cleanup.*)
+  zipkin:
+    base-url: http://${DOCKER_HOST_IP}:9411
 
 server:
   port: ${PORT:8083}

@@ -8,7 +8,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://${EUREKA}/eureka/
+    registryFetchIntervalSeconds: 5
   instance:
     preferIpAddress: true
     ip-address: ${DOCKER_HOST_IP}
     non-secure-port: 9411
+
+

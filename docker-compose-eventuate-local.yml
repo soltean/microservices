@@ -64,7 +64,7 @@ bidcommandside:
     - mysql
     - kafka
     - zookeeper
-  mem_limit: 8g
+  mem_limit: 16g
   environment:
     SPRING_DATASOURCE_URL: jdbc:mysql://mysql/eventuate
     SPRING_DATASOURCE_USERNAME: mysqluser
@@ -88,7 +88,7 @@ bidqueryside:
     - mysql
     - kafka
     - zookeeper
-  mem_limit: 8g
+  mem_limit: 16g
   environment:
     SPRING_DATASOURCE_URL: jdbc:mysql://mysql/eventuate
     SPRING_DATASOURCE_USERNAME: mysqluser
@@ -112,7 +112,7 @@ itemcommandside:
     - mysql
     - kafka
     - zookeeper
-  mem_limit: 8g
+  mem_limit: 16g
   environment:
     SPRING_DATASOURCE_URL: jdbc:mysql://mysql/eventuate
     SPRING_DATASOURCE_USERNAME: mysqluser
@@ -136,7 +136,7 @@ itemqueryside:
     - mysql
     - kafka
     - zookeeper
-  mem_limit: 8g
+  mem_limit: 16g
   environment:
     SPRING_DATASOURCE_URL: jdbc:mysql://mysql/eventuate
     SPRING_DATASOURCE_USERNAME: mysqluser
@@ -164,7 +164,7 @@ api-gateway:
     - bidqueryside
     - itemcommandside
     - itemqueryside
-  mem_limit: 8g
+  mem_limit: 16g
   environment:
     EUREKA: ${DOCKER_HOST_IP}:8761
     DOCKER_HOST_IP: ${DOCKER_HOST_IP}
@@ -183,7 +183,7 @@ hystrix:
    - eureka
   ports:
     - "7000:7000"
-  mem_limit: 8g
+  mem_limit: 16g
   environment:
     EUREKA: ${DOCKER_HOST_IP}:8761
     DOCKER_HOST_IP: ${DOCKER_HOST_IP}
@@ -194,7 +194,7 @@ turbine:
    - eureka
   ports:
     - "7001:7001"
-  mem_limit: 8g
+  mem_limit: 16g
   environment:
     EUREKA: ${DOCKER_HOST_IP}:8761
     DOCKER_HOST_IP: ${DOCKER_HOST_IP}
@@ -205,7 +205,7 @@ zipkin:
    - eureka
   ports:
     - "9411:9411"
-  mem_limit: 8g
+  mem_limit: 16g
   environment:
     EUREKA: ${DOCKER_HOST_IP}:8761
     DOCKER_HOST_IP: ${DOCKER_HOST_IP}
