@@ -12,15 +12,20 @@ spring:
 server:
   port: ${PORT:8083}
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://${EUREKA}/eureka/
-  instance:
-    preferIpAddress: true
-    ip-address: ${DOCKER_HOST_IP}
-    non-secure-port: 8083
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://${EUREKA}/eureka/
+#  instance:
+#    preferIpAddress: true
+#    ip-address: ${DOCKER_HOST_IP}
+#    non-secure-port: 8083
 
 logging:
   level:
    org.springframework.web: debug
+
+info:
+  project:
+    version: @project.version@
+    artifactId: @project.artifactId@

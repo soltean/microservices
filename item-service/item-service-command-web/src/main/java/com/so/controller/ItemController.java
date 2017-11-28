@@ -34,4 +34,6 @@ public class ItemController implements ItemCommandFeignClient {
 				.thenApply(b -> new ResponseEntity(b.getEntityId(), HttpStatus.OK));
 		return result.get();
 	}
+
+
 }
