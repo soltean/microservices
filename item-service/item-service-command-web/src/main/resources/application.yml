@@ -1,6 +1,6 @@
 spring:
   application:
-    name: item-command
+    name: item-command-V2.1.0
   sleuth:
     sampler:
       percentage: 1.0
@@ -10,16 +10,16 @@ spring:
     base-url: http://${DOCKER_HOST_IP}:9411
 
 server:
-  port: ${PORT:8083}
+  port: ${PORT:8084}
 
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://${EUREKA}/eureka/
-#  instance:
-#    preferIpAddress: true
-#    ip-address: ${DOCKER_HOST_IP}
-#    non-secure-port: 8083
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA}/eureka/
+  instance:
+    preferIpAddress: true
+    ip-address: ${DOCKER_HOST_IP}
+    non-secure-port: 8084
 
 logging:
   level:

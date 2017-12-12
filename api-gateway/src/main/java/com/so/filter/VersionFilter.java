@@ -39,12 +39,14 @@ public class VersionFilter extends ZuulFilter {
     @Override
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
-        String version = ctx.getRequest().getHeader("X-Protocol-Version");
-        String versionUrl = versionService.findUrl(version);
-        if (versionUrl == null) {
+        String version = ctx.getRequest().getHeader("App-Version");
+        String appContext = ctx.getRequest().getServletPath().split("/")[1];
+        String appWithVersion = versionService.findUrl(appContext + version);
+        if (appWithVersion == null) {
             throw new InvalidVersionException();
         }
-        String url = ctx.getRequest().getRequestURI() + versionUrl;
+
+        String url = ctx.getRequest().getRequestURL().toString().replace(appContext, appWithVersion);
         ctx.set("requestURI", url);
         return null;
     }

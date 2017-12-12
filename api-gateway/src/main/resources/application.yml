@@ -1,13 +1,13 @@
 spring:
   application:
     name: api-gateway
-  sleuth:
-    sampler:
-      percentage: 1.0
-    web:
-      skipPattern: (^cleanup.*)
-  zipkin:
-    base-url: http://${DOCKER_HOST_IP}:9411
+#  sleuth:
+#    sampler:
+#      percentage: 1.0
+#    web:
+#      skipPattern: (^cleanup.*)
+#  zipkin:
+#    base-url: http://${DOCKER_HOST_IP}:9411
 
 server:
   port: ${PORT:9001}
@@ -22,9 +22,17 @@ eureka:
 
 zuul:
   routes:
-    item-command:
+    item-command-default:
       path: /ic/**
-      serviceId: item-command
+      serviceId: item-command-V1.9.0
+      retryable: true
+    item-command-v1:
+      path: /ic/v1.9.0/**
+      serviceId: item-command-V1.9.0
+      retryable: true
+    item-command-v2:
+      path: /ic/v2.1.0/**
+      serviceId: item-command-V2.1.0
       retryable: true
     item-view:
       path: /iv/**
@@ -50,4 +58,8 @@ hystrix:
 logging:
   level:
    org.springframework.web: debug
+
+management:
+  security:
+    enabled: false
 

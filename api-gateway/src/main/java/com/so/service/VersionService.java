@@ -13,8 +13,8 @@ public class VersionService {
 
     @PostConstruct
     private void buildVersions(){
-        versionAndUrl.put("1.9.0", "/v1.9.0");
-        versionAndUrl.put("2.1.0", "/v2.1.0");
+        versionAndUrl.put("ic1.9.0", "/ic/v1.9.0");
+        versionAndUrl.put("ic2.1.0", "/ic/v2.1.0");
     }
 
     public String findUrl(String version){
