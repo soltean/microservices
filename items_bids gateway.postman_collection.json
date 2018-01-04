@@ -1,0 +1,154 @@
+{
+	"info": {
+		"name": "items_bids gateway",
+		"_postman_id": "9fb629f4-bc78-aa96-29c4-efc7a58e3a48",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "items-command",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"itemCode\":\"1\",\"reservePrice\":400}"
+				},
+				"url": {
+					"raw": "http://10.200.10.1:9001/ic/items",
+					"protocol": "http",
+					"host": [
+						"10",
+						"200",
+						"10",
+						"1"
+					],
+					"port": "9001",
+					"path": [
+						"ic",
+						"items"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "item-query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://10.200.10.1:9001/iv/items",
+					"protocol": "http",
+					"host": [
+						"10",
+						"200",
+						"10",
+						"1"
+					],
+					"port": "9001",
+					"path": [
+						"iv",
+						"items"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "bid-command",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.bid-service.bids+json;version=2.1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"itemCode\":\"1\",\"amount\":600}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/bidsHateoas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"bidsHateoas"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "bid-query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://10.200.10.1:9001/bv/bids/1",
+					"protocol": "http",
+					"host": [
+						"10",
+						"200",
+						"10",
+						"1"
+					],
+					"port": "9001",
+					"path": [
+						"bv",
+						"bids",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "winning-bid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://10.200.10.1:9001/bv/bids/winning/1",
+					"protocol": "http",
+					"host": [
+						"10",
+						"200",
+						"10",
+						"1"
+					],
+					"port": "9001",
+					"path": [
+						"bv",
+						"bids",
+						"winning",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
