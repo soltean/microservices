@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: bid-view
-
-server:
-  port: ${PORT:8761}

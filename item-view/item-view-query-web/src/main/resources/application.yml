@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: item-view
-
-server:
-  port: ${PORT:8761}
-

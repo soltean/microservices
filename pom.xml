@@ -33,27 +33,49 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.eventuate.client.java</groupId>
-                <artifactId>eventuate-client-java-spring</artifactId>
-                <version>${eventuateClientVersion}</version>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>2.6</version>
             </dependency>
             <dependency>
-                <groupId>io.eventuate.local.java</groupId>
-                <artifactId>eventuate-local-java-jdbc</artifactId>
-                <version>${eventuateLocalVersion}</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>1.4.5.RELEASE</version>
             </dependency>
             <dependency>
-                <groupId>io.eventuate.local.java</groupId>
-                <artifactId>eventuate-local-java-embedded-cdc-autoconfigure</artifactId>
-                <version>${eventuateLocalVersion}</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>1.4.5.RELEASE</version>
             </dependency>
-
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Camden.SR5</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>1.4.5.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>io.eventuate.tram.core</groupId>
+                <artifactId>eventuate-tram-commands</artifactId>
+                <version>0.6.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>io.eventuate.tram.core</groupId>
+                <artifactId>eventuate-tram-jdbc-kafka</artifactId>
+                <version>0.6.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>io.eventuate.tram.sagas</groupId>
+                <artifactId>eventuate-jpa-sagas-framework</artifactId>
+                <version>0.5.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>io.eventuate.tram.sagas</groupId>
+                <artifactId>eventuate-tram-sagas-simple-dsl</artifactId>
+                <version>0.5.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.36</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -81,9 +103,6 @@
                 <configuration>
                     <attach>false</attach>
                 </configuration>
-               <!-- <configuration>
-                    <classifier>exec</classifier>
-                </configuration>-->
             </plugin>
         </plugins>
         <finalName>${project.artifactId}</finalName>
@@ -93,6 +112,10 @@
         <repository>
             <id>jcenter</id>
             <url>http://jcenter.bintray.com</url>
+        </repository>
+        <repository>
+            <id>eventate</id>
+            <url>https://dl.bintray.com/eventuateio-oss/eventuate-maven-release</url>
         </repository>
         <repository>
             <id>spring-snapshots</id>
