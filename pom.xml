@@ -9,11 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>core</module>
-        <module>item-service</module>
+        <module>payment-service</module>
         <module>bid-service</module>
-        <module>bid-view</module>
-        <module>item-view</module>
     </modules>
 
     <parent>
@@ -23,11 +20,11 @@
     </parent>
 
     <properties>
-        <eventuateClientVersion>0.16.0.RELEASE</eventuateClientVersion>
-        <eventuateLocalVersion>0.11.0.RELEASE</eventuateLocalVersion>
-        <spring-boot.version>1.5.3.RELEASE</spring-boot.version>
         <java.version>1.8</java.version>
         <start-class>com.so.app.Application</start-class>
+        <eventuate-tram-sagas.version>0.5.0.RELEASE</eventuate-tram-sagas.version>
+        <eventuate-tram.version>0.6.0.RELEASE</eventuate-tram.version>
+        <spring-boot.version>1.4.5.RELEASE</spring-boot.version>
     </properties>
 
     <dependencyManagement>
@@ -40,37 +37,37 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
-                <version>1.4.5.RELEASE</version>
+                <version>${spring-boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-actuator</artifactId>
-                <version>1.4.5.RELEASE</version>
+                <version>${spring-boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
-                <version>1.4.5.RELEASE</version>
+                <version>${spring-boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.eventuate.tram.core</groupId>
                 <artifactId>eventuate-tram-commands</artifactId>
-                <version>0.6.0.RELEASE</version>
+                <version>${eventuate-tram.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.eventuate.tram.core</groupId>
                 <artifactId>eventuate-tram-jdbc-kafka</artifactId>
-                <version>0.6.0.RELEASE</version>
+                <version>${eventuate-tram.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.eventuate.tram.sagas</groupId>
                 <artifactId>eventuate-jpa-sagas-framework</artifactId>
-                <version>0.5.0.RELEASE</version>
+                <version>${eventuate-tram-sagas.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.eventuate.tram.sagas</groupId>
                 <artifactId>eventuate-tram-sagas-simple-dsl</artifactId>
-                <version>0.5.0.RELEASE</version>
+                <version>${eventuate-tram-sagas.version}</version>
             </dependency>
             <dependency>
                 <groupId>mysql</groupId>

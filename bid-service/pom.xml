@@ -12,17 +12,7 @@
     <modules>
         <module>bid-service-core</module>
         <module>bid-service-web</module>
-        <module>commands</module>
         <module>bid-service-commands</module>
     </modules>
-
     <artifactId>bid-service</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>com.so</groupId>
-            <artifactId>core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
-
 </project>

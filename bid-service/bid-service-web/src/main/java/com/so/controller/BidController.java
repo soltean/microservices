@@ -1,5 +1,6 @@
 package com.so.controller;
 
+import com.so.domain.Bid;
 import com.so.dto.BidRequest;
 import com.so.service.BidService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Created by sergiu.oltean on 5/8/2017.
- */
 @RestController
 public class BidController {
 
@@ -23,8 +21,13 @@ public class BidController {
         this.bidService = bidService;
     }
 
-    @RequestMapping(value = "/payForItem", method = RequestMethod.POST)
-    public ResponseEntity payForItem(@RequestBody BidRequest bid) {
-        return bidService.addBid(bid.getItemCode(), bid.getAmount()).thenApply(b -> new ResponseEntity(b.getEntityId(), HttpStatus.OK));
+    @RequestMapping(value = "/payBid", method = RequestMethod.POST)
+    public ResponseEntity payBid(@RequestBody BidRequest bidRequest) {
+        Bid bid = new Bid(bidRequest.getItemCode(), bidRequest.getAmount());
+        try {
+            return new ResponseEntity(bidService.payForBid(bid), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 }

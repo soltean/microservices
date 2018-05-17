@@ -1,6 +1,6 @@
 spring:
   application:
-    name: item-command
+    name: payments
 
 server:
   port: ${PORT:8761}

@@ -30,6 +30,7 @@ public class PaymentCommandHandler {
             paymentService.pay(payment);
             return withSuccess();
         } catch (Exception e) {
+            payment.reject();
             return withFailure();
         }
     }

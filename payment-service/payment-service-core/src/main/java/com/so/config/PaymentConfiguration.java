@@ -23,7 +23,7 @@ public class PaymentConfiguration {
     }
 
     @Bean
-    public CommandDispatcher consumerCommandDispatcher(PaymentCommandHandler target, SagaLockManager sagaLockManager) {
+    public CommandDispatcher consumerCommandDispatcher(PaymentCommandHandler target) {
         return new SagaCommandDispatcher("paymentCommandDispatcher", target.commandHandlerDefinitions());
     }
 }

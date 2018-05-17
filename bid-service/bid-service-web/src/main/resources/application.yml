@@ -1,5 +1,5 @@
 spring:
   application:
-    name: bid-command
+    name: bids
 server:
   port: ${PORT:8761}

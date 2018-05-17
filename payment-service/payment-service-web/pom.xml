@@ -9,11 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>pweb</artifactId>
+    <artifactId>payment-service-web</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.so</groupId>
-            <artifactId>payment-service-command</artifactId>
+            <artifactId>payment-service-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
