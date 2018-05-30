@@ -1,11 +1,11 @@
 #! /bin/bash
 
-done=false
-
 host=$1
-shift
-ports=$*
+ports=$2
 
+shift 2
+
+done=false
 while [[ "$done" = false ]]; do
 	for port in $ports; do
 		curl -q http://${host}:${port}/health >& /dev/null
@@ -17,10 +17,9 @@ while [[ "$done" = false ]]; do
 		fi
 	done
 	if [[ "$done" = true ]]; then
-		echo Services are up!!!
+		echo services are started
 		break;
   fi
-	#curl -q http://${1?}:8081/health >& /dev/null && curl -q http://${1?}:8082/health >& /dev/null && curl -q http://${1?}:8083/health >& /dev/null && curl -q http://${1?}:8084/health >& /dev/null
 	echo -n .
 	sleep 1
 done

@@ -2,42 +2,22 @@
 
 set -e
 
-echo DOCKER_HOST_IP is $DOCKER_HOST_IP
 
-DOCKER_COMPOSE="docker-compose -p items_and_bids"
+. ./set-env.sh
 
-while [ "$1" = "-f" ] ; do
-  shift;
-  DOCKER_COMPOSE="$DOCKER_COMPOSE -f ${1?}"
-  shift
-done
+docker-compose -f docker-compose-mysql.yml down -v
 
-if [ "$1" = "--use-existing" ] ; then
-  shift;
-else
-  ${DOCKER_COMPOSE?} stop
-  ${DOCKER_COMPOSE?} rm -v --force
-fi
+docker-compose -f docker-compose-mysql.yml up -d --build zookeeper mysql kafka
 
-NO_RM=false
+./wait-for-mysql.sh
 
-if [ "$1" = "--no-rm" ] ; then
-  NO_RM=true
-  shift
-fi
+docker-compose -f docker-compose-mysql.yml up -d --build cdcservice
 
-${DOCKER_COMPOSE?} up -d mongodb $EXTRA_INFRASTRUCTURE_SERVICES
+./wait-for-services.sh $DOCKER_HOST_IP "8099"
 
-${DOCKER_COMPOSE?} build
+docker-compose -f docker-compose-mysql.yml up -d --build
 
-${DOCKER_COMPOSE?} up -d
+./wait-for-services.sh $DOCKER_HOST_IP "8081 8082"
 
-echo "Waiting for services"
-./wait-for-services.sh $DOCKER_HOST_IP 8081 8082 8083 8084
 
-set -e
-
-#if [ $NO_RM = false ] ; then
-#  ${DOCKER_COMPOSE?} stop
-#  ${DOCKER_COMPOSE?} rm -v --force
-#fi
+docker-compose -f docker-compose-mysql.yml down -v

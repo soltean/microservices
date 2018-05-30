@@ -2,4 +2,4 @@ spring:
   application:
     name: bids
 server:
-  port: ${PORT:8761}
+  port: 8081

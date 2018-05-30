@@ -3,5 +3,5 @@ spring:
     name: payments
 
 server:
-  port: ${PORT:8761}
+  port: 8082
 
