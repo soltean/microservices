@@ -7,6 +7,7 @@ import io.eventuate.tram.sagas.participant.SagaLockManager;
 import io.eventuate.tram.sagas.participant.SagaParticipantConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -15,6 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Import(SagaParticipantConfiguration.class)
 @EnableJpaRepositories
 @EnableAutoConfiguration
+@ComponentScan("com.so")
 public class PaymentConfiguration {
 
     @Bean
