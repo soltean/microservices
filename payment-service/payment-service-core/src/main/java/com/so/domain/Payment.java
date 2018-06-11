@@ -1,13 +1,16 @@
 package com.so.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "payments")
 public class Payment {
 
+    @Id
     private long bidId;
+
     private long amount;
 
     private PaymentStatus status;

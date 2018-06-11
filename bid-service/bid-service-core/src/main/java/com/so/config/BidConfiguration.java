@@ -10,21 +10,30 @@ import io.eventuate.tram.sagas.orchestration.Saga;
 import io.eventuate.tram.sagas.orchestration.SagaManager;
 import io.eventuate.tram.sagas.orchestration.SagaManagerImpl;
 import io.eventuate.tram.sagas.participant.SagaCommandDispatcher;
+import io.eventuate.tram.sagas.participant.SagaLockManager;
+import io.eventuate.tram.sagas.participant.SagaLockManagerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = "com.so.repository")
 @EnableAutoConfiguration
 @ComponentScan("com.so")
+@EntityScan(basePackages = "com.so.domain")
 public class BidConfiguration {
 
     @Autowired
     private BidRepository bidRepository;
+
+    @Bean
+    public SagaLockManager sagaLockManager() {
+        return new SagaLockManagerImpl();
+    }
 
     @Bean
     public SagaManager<BidPaymentSagaData> createOrderSagaManager(Saga<BidPaymentSagaData> saga) {
@@ -47,7 +56,7 @@ public class BidConfiguration {
     }
 
     @Bean
-    public CommandDispatcher bidCommandDispatcher(BidCommandHandler target) {
+    public CommandDispatcher bidCommandDispatcher(BidCommandHandler target, SagaLockManager sagaLockManager) {
         return new SagaCommandDispatcher("bidCommandDispatcher", target.commandHandlerDefinitions());
     }
 }
