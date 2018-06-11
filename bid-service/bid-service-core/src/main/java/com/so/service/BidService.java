@@ -23,13 +23,13 @@ public class BidService {
 
     @Transactional
     public Bid payForBid(Bid bid) {
-        BidPaymentSagaData data = new BidPaymentSagaData(bid.getId(), bid.getAmount());
+        BidPaymentSagaData data = new BidPaymentSagaData(bid.getItemCode(), bid.getAmount());
         bidRepository.save(bid);
-        bidPaymentSagaSagaManager.create(data, Bid.class, bid.getId());
+        bidPaymentSagaSagaManager.create(data, Bid.class, bid.getItemCode());
         return bid;
     }
 
-    public Optional<Bid> find(long bidId) {
-        return bidRepository.findById(bidId);
+    public Optional<Bid> find(String itemCode) {
+        return Optional.ofNullable(bidRepository.findByItemCode(itemCode));
     }
 }

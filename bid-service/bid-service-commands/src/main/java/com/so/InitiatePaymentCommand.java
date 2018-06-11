@@ -4,17 +4,17 @@ import io.eventuate.tram.commands.common.Command;
 
 public class InitiatePaymentCommand implements Command {
 
-    public InitiatePaymentCommand(long bidId, long amount) {
-        this.bidId = bidId;
+    public InitiatePaymentCommand(String itemCode, long amount) {
+        this.itemCode = itemCode;
         this.amount = amount;
     }
 
-    public long getBidId() {
-        return bidId;
+    public String getItemCode() {
+        return itemCode;
     }
 
-    public void setBidId(long bidId) {
-        this.bidId = bidId;
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
     }
 
     public long getAmount() {
@@ -25,6 +25,6 @@ public class InitiatePaymentCommand implements Command {
         this.amount = amount;
     }
 
-    private long bidId;
+    private String itemCode;
     private long amount;
 }

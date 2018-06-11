@@ -25,7 +25,7 @@ public class PaymentCommandHandler {
 
     private Message pay(CommandMessage<InitiatePaymentCommand> commandMessage) {
         InitiatePaymentCommand cmd = commandMessage.getCommand();
-        Payment payment = new Payment(cmd.getBidId(), cmd.getAmount());
+        Payment payment = new Payment(cmd.getItemCode(), cmd.getAmount());
         try {
             paymentService.pay(payment);
             return withSuccess();

@@ -33,7 +33,7 @@ public class Bid {
         return amount;
     }
 
-    public Long getId() {
-        return id;
+    public String getItemCode() {
+        return itemCode;
     }
 }

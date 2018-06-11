@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.logging.Logger;
+
 @RestController
 public class BidController {
 
+    private Logger log = Logger.getLogger(BidController.class.getName());
     private BidService bidService;
 
     @Autowired
@@ -27,7 +30,10 @@ public class BidController {
         try {
             return new ResponseEntity(bidService.payForBid(bid), HttpStatus.OK);
         } catch (Exception e) {
+            log.severe(e + "");
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
+
+
 }

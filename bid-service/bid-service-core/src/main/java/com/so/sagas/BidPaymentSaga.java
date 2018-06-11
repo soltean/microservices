@@ -18,13 +18,13 @@ public class BidPaymentSaga implements SimpleSaga<BidPaymentSagaData> {
     }
 
     public CommandWithDestination initiatePayment(BidPaymentSagaData data) {
-        return send(new InitiatePaymentCommand(data.getBidId(), data.getAmount()))
+        return send(new InitiatePaymentCommand(data.getItemCode(), data.getAmount()))
                 .to("paymentService")
                 .build();
     }
 
     public CommandWithDestination reject(BidPaymentSagaData data) {
-        return send(new RejectPaymentCommand(data.getBidId()))
+        return send(new RejectPaymentCommand(data.getItemCode()))
                 .to("bidService")
                 .build();
     }
