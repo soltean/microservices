@@ -1,7 +1,8 @@
 spring:
   application:
     name: payments
-
+  jpa:
+      generate-ddl: true
 server:
   port: 8082
 

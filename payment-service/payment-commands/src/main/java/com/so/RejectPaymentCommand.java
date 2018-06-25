@@ -13,11 +13,11 @@ public class RejectPaymentCommand implements Command {
     this.itemCode = itemCode;
   }
 
-  public String getBidId() {
+  public String getItemCode() {
     return itemCode;
   }
 
-  public void setBidId(String bidId) {
-    this.itemCode = bidId;
+  public void setItemCode(String itemCode) {
+    this.itemCode = itemCode;
   }
 }

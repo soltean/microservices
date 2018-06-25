@@ -11,6 +11,8 @@ public class Payment {
     @Id
     private long bidId;
 
+
+    private String itemCode;
     private long amount;
 
     private PaymentStatus status;
@@ -18,8 +20,8 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(long bidId, long amount) {
-        this.bidId = bidId;
+    public Payment(String itemCode, long amount) {
+        this.itemCode = itemCode;
         this.amount = amount;
     }
 
@@ -37,6 +39,14 @@ public class Payment {
 
     public void setAmount(long amount) {
         this.amount = amount;
+    }
+
+    public String getItemCode() {
+        return itemCode;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
     }
 
     public PaymentStatus getStatus() {

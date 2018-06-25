@@ -4,17 +4,17 @@ import io.eventuate.tram.commands.common.Command;
 
 public class RejectBidCommand implements Command {
 
-    private long bidId;
+    private String itemCode;
 
-    public RejectBidCommand(long bidId) {
-        this.bidId = bidId;
+    public RejectBidCommand(String itemCode) {
+        this.itemCode = itemCode;
     }
 
-    public long getBidId() {
-        return bidId;
+    public String getItemCode() {
+        return itemCode;
     }
 
-    public void setBidId(long bidId) {
-        this.bidId = bidId;
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
     }
 }

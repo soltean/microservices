@@ -5,10 +5,12 @@ import com.so.repository.BidRepository;
 import com.so.sagas.BidPaymentSagaData;
 import io.eventuate.tram.sagas.orchestration.SagaManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+@Service
 public class BidService {
 
     private BidRepository bidRepository;
@@ -31,5 +33,9 @@ public class BidService {
 
     public Optional<Bid> find(String itemCode) {
         return Optional.ofNullable(bidRepository.findByItemCode(itemCode));
+    }
+
+    public void update(Bid bid) {
+        bidRepository.save(bid);
     }
 }

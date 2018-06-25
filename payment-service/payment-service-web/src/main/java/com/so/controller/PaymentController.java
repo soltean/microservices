@@ -23,7 +23,7 @@ public class PaymentController {
 
     @RequestMapping(value = "/pay", method = RequestMethod.POST)
     public ResponseEntity pay(@RequestBody PaymentRequest paymentRequest) {
-        Payment payment = new Payment(paymentRequest.getBidCode(), paymentRequest.getAmount());
+        Payment payment = new Payment(paymentRequest.getItemCode(), paymentRequest.getAmount());
         try {
             return new ResponseEntity(paymentService.pay(payment), HttpStatus.OK);
         } catch (Exception e) {

@@ -19,8 +19,7 @@ public class PaymentService {
     @Transactional
     public Payment pay(Payment payment) {
         payment.finish();
-        paymentRepository.save(payment);
-        return payment;
+        return paymentRepository.save(payment);
     }
 
 }

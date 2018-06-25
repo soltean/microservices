@@ -1,5 +1,8 @@
 spring:
   application:
     name: bids
+  jpa:
+      generate-ddl: true
 server:
   port: 8081
+

@@ -4,22 +4,21 @@ import io.eventuate.tram.commands.common.Command;
 
 public class ApprovePaymentCommand implements Command {
 
-  private long bidId;
+  private String itemCode;
 
   private ApprovePaymentCommand() {
   }
 
+  public ApprovePaymentCommand(String itemCode) {
 
-  public ApprovePaymentCommand(long bidId) {
-
-    this.bidId = bidId;
+    this.itemCode = itemCode;
   }
 
-  public long getBidId() {
-    return bidId;
+  public String getItemCode() {
+    return itemCode;
   }
 
-  public void setBidId(long bidId) {
-    this.bidId = bidId;
+  public void setItemCode(String itemCode) {
+    this.itemCode = itemCode;
   }
 }

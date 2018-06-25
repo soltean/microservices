@@ -2,22 +2,22 @@ package com.so.dto;
 
 public class PaymentRequest {
 
-	private long bidCode;
-	private int amount;
+    private String itemCode;
+    private int amount;
 
-	public PaymentRequest(){
-	}
+    public PaymentRequest() {
+    }
 
-	public PaymentRequest(long bidCode, int amount) {
-		this.bidCode = bidCode;
-		this.amount = amount;
-	}
+    public PaymentRequest(String itemCode, int amount) {
+        this.itemCode = itemCode;
+        this.amount = amount;
+    }
 
-	public long getBidCode() {
-		return bidCode;
-	}
+    public String getItemCode() {
+        return itemCode;
+    }
 
-	public int getAmount() {
-		return amount;
-	}
+    public int getAmount() {
+        return amount;
+    }
 }
