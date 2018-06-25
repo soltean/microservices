@@ -19,10 +19,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.so.repository")
-@EnableAutoConfiguration
+@EnableTransactionManagement
 @ComponentScan("com.so")
 @EntityScan(basePackages = "com.so.domain")
 public class BidConfiguration {
