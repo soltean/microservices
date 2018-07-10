@@ -5,6 +5,9 @@ public class BidPaymentSagaData {
     private String itemCode;
     private int amount;
 
+    public BidPaymentSagaData() {
+    }
+
     public BidPaymentSagaData(String itemCode, int amount) {
         this.itemCode = itemCode;
         this.amount = amount;
@@ -14,8 +17,8 @@ public class BidPaymentSagaData {
         return itemCode;
     }
 
-    public void setItemCode(String bidId) {
-        this.itemCode = bidId;
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
     }
 
     public int getAmount() {

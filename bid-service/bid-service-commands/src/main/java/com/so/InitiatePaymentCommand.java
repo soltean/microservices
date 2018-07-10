@@ -4,6 +4,9 @@ import io.eventuate.tram.commands.common.Command;
 
 public class InitiatePaymentCommand implements Command {
 
+    public InitiatePaymentCommand() {
+    }
+
     public InitiatePaymentCommand(String itemCode, long amount) {
         this.itemCode = itemCode;
         this.amount = amount;

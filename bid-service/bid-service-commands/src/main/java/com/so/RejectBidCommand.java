@@ -6,6 +6,9 @@ public class RejectBidCommand implements Command {
 
     private String itemCode;
 
+    public RejectBidCommand() {
+    }
+
     public RejectBidCommand(String itemCode) {
         this.itemCode = itemCode;
     }

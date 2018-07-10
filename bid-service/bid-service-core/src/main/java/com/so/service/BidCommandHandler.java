@@ -21,7 +21,7 @@ public class BidCommandHandler {
 
     public CommandHandlers commandHandlerDefinitions() {
         return SagaCommandHandlersBuilder
-                .fromChannel("paymentService")
+                .fromChannel("bidService")
                 .onMessage(RejectPaymentCommand.class, this::rejectBid)
                 .onMessage(ApprovePaymentCommand.class, this::bidPayed)
                 .build();
@@ -39,7 +39,7 @@ public class BidCommandHandler {
 
     private Message bidPayed(CommandMessage<ApprovePaymentCommand> cmd) {
         ApprovePaymentCommand approvePaymentCommand = cmd.getCommand();
-        bidService.find(approvePaymentCommand.getItemCode()).ifPresent(Bid::reject);
+        bidService.find(approvePaymentCommand.getItemCode()).ifPresent(Bid::approve);
         return withSuccess();
     }
 }

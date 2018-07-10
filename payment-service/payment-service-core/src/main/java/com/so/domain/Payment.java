@@ -1,20 +1,19 @@
 package com.so.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "payments")
 public class Payment {
 
     @Id
-    private long bidId;
-
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private long paymentId;
 
     private String itemCode;
     private long amount;
 
+    @Enumerated(EnumType.STRING)
     private PaymentStatus status;
 
     public Payment() {
@@ -25,12 +24,12 @@ public class Payment {
         this.amount = amount;
     }
 
-    public long getBidId() {
-        return bidId;
+    public long getPaymentId() {
+        return paymentId;
     }
 
-    public void setBidId(long bidId) {
-        this.bidId = bidId;
+    public void setPaymentId(long paymentId) {
+        this.paymentId = paymentId;
     }
 
     public long getAmount() {

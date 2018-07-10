@@ -1,15 +1,18 @@
 package com.so.service;
 
+import com.so.ApprovePaymentCommand;
 import com.so.InitiatePaymentCommand;
 import com.so.domain.Payment;
 import io.eventuate.tram.commands.consumer.CommandHandlers;
 import io.eventuate.tram.commands.consumer.CommandMessage;
+import io.eventuate.tram.commands.consumer.CommandWithDestination;
 import io.eventuate.tram.messaging.common.Message;
 import io.eventuate.tram.sagas.participant.SagaCommandHandlersBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withFailure;
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withSuccess;
+import static io.eventuate.tram.commands.consumer.CommandWithDestinationBuilder.send;
 
 public class PaymentCommandHandler {
 
@@ -18,7 +21,7 @@ public class PaymentCommandHandler {
 
     public CommandHandlers commandHandlerDefinitions() {
         return SagaCommandHandlersBuilder
-                .fromChannel("bidService")
+                .fromChannel("paymentService")
                 .onMessage(InitiatePaymentCommand.class, this::pay)
                 .build();
     }
@@ -34,4 +37,5 @@ public class PaymentCommandHandler {
             return withFailure();
         }
     }
+
 }

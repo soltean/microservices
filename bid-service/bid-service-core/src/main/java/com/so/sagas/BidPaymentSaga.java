@@ -1,5 +1,6 @@
 package com.so.sagas;
 
+import com.so.ApprovePaymentCommand;
 import com.so.InitiatePaymentCommand;
 import com.so.RejectPaymentCommand;
 import io.eventuate.tram.commands.consumer.CommandWithDestination;
@@ -14,12 +15,19 @@ public class BidPaymentSaga implements SimpleSaga<BidPaymentSagaData> {
     public SagaDefinition<BidPaymentSagaData> getSagaDefinition() {
         return step().withCompensation(this::reject)
                 .step().invokeParticipant(this::initiatePayment)
+                .step().invokeParticipant(this::approvePayment)
                 .build();
     }
 
     public CommandWithDestination initiatePayment(BidPaymentSagaData data) {
         return send(new InitiatePaymentCommand(data.getItemCode(), data.getAmount()))
                 .to("paymentService")
+                .build();
+    }
+
+    public CommandWithDestination approvePayment(BidPaymentSagaData data) {
+        return send(new ApprovePaymentCommand(data.getItemCode()))
+                .to("bidService")
                 .build();
     }
 
