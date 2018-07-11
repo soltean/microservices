@@ -1,3 +1,3 @@
 # microservices
 
-Run build-eventuate-local.sh to fire the services.
+Run _build-and-test-all.sh to fire the services.

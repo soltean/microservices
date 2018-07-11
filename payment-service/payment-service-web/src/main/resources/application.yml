@@ -4,5 +4,5 @@ spring:
   jpa:
       generate-ddl: true
 server:
-  port: 8082
+  port: 8080
 
