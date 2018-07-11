@@ -6,10 +6,7 @@ import com.so.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PaymentController {
@@ -21,7 +18,7 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
-    @RequestMapping(value = "/pay", method = RequestMethod.POST)
+    @PostMapping(value = "/pay")
     public ResponseEntity pay(@RequestBody PaymentRequest paymentRequest) {
         Payment payment = new Payment(paymentRequest.getItemCode(), paymentRequest.getAmount());
         try {

@@ -1,0 +1,69 @@
+{
+	"info": {
+		"name": "sagas",
+		"_postman_id": "89748cdb-35f3-f168-d519-be9eac8a9301",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "payBid",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"itemCode\":\"A\",\"amount\":\"500\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/payBid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"payBid"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getBid",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"itemCode\":\"A\",\"amount\":\"500\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/bid/A",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"bid",
+						"A"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
